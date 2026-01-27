@@ -4,41 +4,121 @@
   <meta charset="UTF-8">
   <title>OTR-OnTouR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Edler System-Font-Stack (kein Google, kein Billiglook) -->
   <style>
+    :root {
+      --bg: #0b0c0e;
+      --text: #f5f5f5;
+      --muted: rgba(245,245,245,0.65);
+      --accent: #caa25a; /* warmes Gold, sehr dezent */
+    }
+
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0e0e0e;
-      color: #ffffff;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      background:
+        radial-gradient(600px 300px at 50% 0%, rgba(202,162,90,0.08), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
       text-align: center;
+      -webkit-font-smoothing: antialiased;
     }
-    a {
-      display: inline-block;
-      margin-top: 22px;
-      padding: 14px 30px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
+
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+
+    /* LOGO */
+    .logo {
+      width: 92px;
+      opacity: 0.9;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.6px;
+    }
+
+    /* PREMIUM BUTTON */
+    .btn {
+      margin-top: 8px;
+      padding: 14px 34px;
+      border-radius: 999px; /* fein abgerundet */
       text-decoration: none;
-      font-size: 15px;
-      letter-spacing: 1px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      color: #0b0c0e;
+      background: linear-gradient(
+        180deg,
+        #e2c07b 0%,
+        #caa25a 100%
+      );
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
-    a:hover {
-      background: #ffffff;
-      color: #0e0e0e;
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 14px 40px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow:
+        0 8px 22px rgba(0,0,0,0.45),
+        inset 0 2px 6px rgba(0,0,0,0.25);
     }
   </style>
 </head>
+
 <body>
-  <div>
+  <div class="wrap">
+
+    <!-- LOGO -->
+    <img src="LOGO_WHITE.png" alt="OTR-OnTouR Logo" class="logo">
+
     <h1>OTR-OnTouR</h1>
     <p>Photo & Video</p>
-    <a href="https://www.instagram.com/otr_ontour" target="_blank">
+
+    <a
+      class="btn"
+      href="https://www.instagram.com/otr_ontour"
+      target="_blank"
+      rel="noopener"
+    >
       Instagram
     </a>
+
   </div>
 </body>
 </html>
