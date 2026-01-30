@@ -5,13 +5,12 @@
   <title>OTR-OnTouR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Edler System-Font-Stack (kein Google, kein Billiglook) -->
   <style>
     :root {
       --bg: #0b0c0e;
       --text: #f5f5f5;
       --muted: rgba(245,245,245,0.65);
-      --accent: #caa25a; /* warmes Gold, sehr dezent */
+      --accent: #caa25a;
     }
 
     body {
@@ -25,14 +24,9 @@
         var(--bg);
       color: var(--text);
       font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "SF Pro Text",
-        "Helvetica Neue",
-        Helvetica,
-        Arial,
-        sans-serif;
+        -apple-system, BlinkMacSystemFont,
+        "SF Pro Display", "SF Pro Text",
+        "Helvetica Neue", Helvetica, Arial, sans-serif;
       text-align: center;
       -webkit-font-smoothing: antialiased;
     }
@@ -44,7 +38,6 @@
       gap: 22px;
     }
 
-    /* LOGO */
     .logo {
       width: 92px;
       opacity: 0.9;
@@ -64,61 +57,90 @@
       letter-spacing: 0.6px;
     }
 
-    /* PREMIUM BUTTON */
-    .btn {
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
       margin-top: 8px;
+    }
+
+    .btn {
       padding: 14px 34px;
-      border-radius: 999px; /* fein abgerundet */
+      border-radius: 999px;
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Primary (Gold) */
+    .btn-primary {
       color: #0b0c0e;
-      background: linear-gradient(
-        180deg,
-        #e2c07b 0%,
-        #caa25a 100%
-      );
+      background: linear-gradient(180deg, #e2c07b 0%, #caa25a 100%);
       box-shadow:
         0 10px 30px rgba(0,0,0,0.45),
         inset 0 1px 0 rgba(255,255,255,0.35);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
-
-    .btn:hover {
+    .btn-primary:hover {
       transform: translateY(-1px);
       box-shadow:
         0 14px 40px rgba(0,0,0,0.55),
         inset 0 1px 0 rgba(255,255,255,0.4);
     }
-
-    .btn:active {
+    .btn-primary:active {
       transform: translateY(0);
       box-shadow:
         0 8px 22px rgba(0,0,0,0.45),
         inset 0 2px 6px rgba(0,0,0,0.25);
+    }
+
+    /* Secondary (Kontakt) */
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(202,162,90,0.45);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+    }
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(202,162,90,0.65);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.45);
+    }
+    .btn-secondary:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-
-    <!-- LOGO -->
     <img src="LOGO_WHITE.png" alt="OTR-OnTouR Logo" class="logo">
 
     <h1>OTR-OnTouR</h1>
     <p>Photo & Video</p>
 
-    <a
-      class="btn"
-      href="https://www.instagram.com/otr_ontour"
-      target="_blank"
-      rel="noopener"
-    >
-      Instagram
-    </a>
+    <div class="actions">
+      <a class="btn btn-primary"
+         href="https://www.instagram.com/otr_ontour"
+         target="_blank" rel="noopener">
+        Instagram
+      </a>
 
+      <a class="btn btn-secondary"
+         href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR&body=Hi%20Milan%2C%0A%0AIch%20moechte%20anfragen%20wegen%3A%20%0A%0ADatum%2FOrt%3A%20%0ABudget%3A%20%0A%0ALiebe%20Gruesse%0A">
+        Kontakt
+      </a>
+    </div>
   </div>
 </body>
 </html>
