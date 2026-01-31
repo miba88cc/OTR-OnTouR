@@ -4,112 +4,78 @@
   <meta charset="UTF-8" />
   <title>OTR-OnTouR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <style>
-    :root {
-      --bg: #0b0c0e;
-      --text: #f5f5f5;
-      --accent: #caa25a;
+    :root { --bg:#0b0c0e; --text:#f5f5f5; --accent:#caa25a; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; min-height:100vh; background:var(--bg); overflow:hidden;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif; }
+
+    .video-bg{ position:fixed; inset:0; z-index:-2; background:var(--bg); }
+    .video-bg video{ width:100%; height:100%; object-fit:cover; background:var(--bg); }
+
+    .overlay{ position:fixed; inset:0; z-index:-1;
+      background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%); }
+
+    .actions{
+      position:fixed; left:50%; bottom:28px; transform:translateX(-50%);
+      display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+      padding:0 16px; z-index:10;
     }
 
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--bg);
-      overflow: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
+    .btn{
+      padding:14px 34px; border-radius:12px; text-decoration:none;
+      font-size:14px; font-weight:600; letter-spacing:0.6px;
+      display:inline-flex; align-items:center; justify-content:center;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none; -webkit-tap-highlight-color:transparent; white-space:nowrap;
     }
 
-    /* VIDEO BACKGROUND */
-    .video-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background: var(--bg);
+    .btn-primary{
+      color:#0b0c0e;
+      background:linear-gradient(180deg,#e2c07b 0%,#caa25a 100%);
+      box-shadow:0 10px 26px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.35);
+    }
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(202,162,90,0.45);
+      box-shadow:0 8px 22px rgba(0,0,0,0.35);
+      backdrop-filter:blur(6px);
     }
 
-    .video-bg video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    /* Debug badge */
+    .debug{
+      position:fixed; top:14px; left:14px; z-index:20;
+      padding:10px 12px; border-radius:10px;
+      background:rgba(0,0,0,0.55); color:var(--text);
+      border:1px solid rgba(255,255,255,0.12);
+      font-size:12px; letter-spacing:0.3px;
     }
+  </style>
+</head>
+<body>
 
-    /* OVERLAY (lesbarkeit + premium) */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: radial-gradient(700px 350px at 50% 15%, rgba(202,162,90,0.10), transparent 60%),
-                  linear-gradient(180deg, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.65) 100%);
-    }
+  <div class="debug" id="dbg">HTML geladen • Video: pruefe...</div>
 
-    /* BUTTON AREA */
-    .actions {
-      position: fixed;
-      left: 50%;
-      bottom: 28px;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 0 16px;
-      z-index: 1;
-    }
+  <div class="video-bg">
+    <video id="bgvid" autoplay muted loop playsinline preload="auto">
+      <source src="video_landingpage.mp4" type="video/mp4" />
+    </video>
+  </div>
 
-    .btn {
-      padding: 14px 34px;
-      border-radius: 12px; /* Apple-Style */
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.6px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
-      white-space: nowrap;
-    }
+  <div class="overlay"></div>
 
-    /* Primary */
-    .btn-primary {
-      color: #0b0c0e;
-      background: linear-gradient(180deg, #e2c07b 0%, #caa25a 100%);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.35);
-    }
+  <div class="actions">
+    <a class="btn btn-primary" href="https://www.instagram.com/otr_ontour" target="_blank" rel="noopener">Instagram</a>
+    <a class="btn btn-secondary" href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR">Kontakt</a>
+  </div>
 
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.4);
-    }
+  <script>
+    const dbg = document.getElementById('dbg');
+    const v = document.getElementById('bgvid');
 
-    .btn-primary:active {
-      transform: translateY(0);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.45), inset 0 2px 6px rgba(0,0,0,0.25);
-    }
-
-    /* Secondary */
-    .btn-secondary {
-      color: var(--text);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(202,162,90,0.45);
-      box-shadow: 0 8px 22px rgba(0,0,0,0.35);
-      backdrop-filter: blur(6px);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.09);
-      border-color: rgba(202,162,90,0.65);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
-    }
-
-    .btn-secondary:active {
-      transform: translateY(0);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-    }
+    v.addEventListener('loadeddata', () => dbg.textContent = 'HTML geladen • Video: OK (loadeddata)');
+    v.addEventListener('error', () => dbg.textContent = 'HTML geladen • Video: ERROR (Datei fehlt/Format/MIME)');
+  </script>
+</body>
+</html>
