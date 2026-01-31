@@ -8,7 +8,7 @@
   <style>
     :root {
       --bg: #0b0c0e;
-      --text: #f5f5f5;
+      --icon: #f5f5f5;
       --border-red: rgba(220, 60, 60, 0.75);
     }
 
@@ -19,23 +19,16 @@
       min-height: 100vh;
       background: var(--bg);
       overflow: hidden;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Text",
-        "Helvetica Neue",
-        Helvetica,
-        Arial,
-        sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Helvetica Neue", Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* VIDEO BACKGROUND */
+    /* VIDEO */
     .video-bg {
       position: fixed;
       inset: 0;
       z-index: -2;
-      background: var(--bg);
     }
 
     .video-bg video {
@@ -49,15 +42,14 @@
       position: fixed;
       inset: 0;
       z-index: -1;
-      background:
-        linear-gradient(
-          180deg,
-          rgba(0,0,0,0.35) 0%,
-          rgba(0,0,0,0.65) 100%
-        );
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0.65)
+      );
     }
 
-    /* BUTTON AREA */
+    /* BUTTONS */
     .actions {
       position: fixed;
       left: 50%;
@@ -65,48 +57,41 @@
       transform: translateX(-50%);
       display: flex;
       gap: 14px;
-      justify-content: center;
-      padding: 0 16px;
       z-index: 1;
     }
 
     .btn {
-      padding: 14px 34px;
+      width: 56px;
+      height: 56px;
       border-radius: 12px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.6px;
-      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--border-red);
       box-shadow: 0 8px 22px rgba(0,0,0,0.35);
       backdrop-filter: blur(6px);
-      transition:
-        transform 0.12s ease,
-        background 0.12s ease,
-        border-color 0.12s ease,
-        box-shadow 0.12s ease;
-      white-space: nowrap;
+      color: var(--icon); /* 🔑 entscheidend */
+      transition: all 0.12s ease;
+      text-decoration: none;
+    }
+
+    .btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor; /* 🔑 macht es sichtbar */
     }
 
     .btn:hover {
       transform: translateY(-1px);
       background: rgba(255,255,255,0.08);
-      border-color: rgba(255, 80, 80, 0.9);
+      border-color: rgba(255,80,80,0.9);
       box-shadow: 0 12px 30px rgba(0,0,0,0.45);
     }
 
     .btn:active {
       transform: translateY(0);
       box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-    }
-
-    /* iOS Safe Area */
-    @supports (padding: env(safe-area-inset-bottom)) {
-      .actions {
-        padding-bottom: env(safe-area-inset-bottom);
-      }
     }
   </style>
 </head>
@@ -120,18 +105,27 @@
     </video>
   </div>
 
-  <!-- OVERLAY -->
   <div class="overlay"></div>
 
-  <!-- BUTTONS -->
+  <!-- ICON BUTTONS -->
   <div class="actions">
-    <a class="btn" href="https://www.instagram.com/otr_ontour" target="_blank" rel="noopener">
-      Instagram
+
+    <!-- Instagram -->
+    <a class="btn" href="https://www.instagram.com/otr_ontour"
+       target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24">
+        <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm6-1a1 1 0 110 2 1 1 0 010-2z"/>
+      </svg>
     </a>
 
-    <a class="btn" href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR">
-      Kontakt
+    <!-- Mail -->
+    <a class="btn" href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR"
+       aria-label="Kontakt">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 5h18v14H3V5zm9 7l9-5H3l9 5z"/>
+      </svg>
     </a>
+
   </div>
 
 </body>
