@@ -23,58 +23,32 @@
       -webkit-font-smoothing:antialiased;
     }
 
-    /* fallback background (visible if video fails) */
     .fallback{
-      position:fixed;
-      inset:0;
-      z-index:-3;
+      position:fixed; inset:0; z-index:-3;
       background: radial-gradient(900px 450px at 50% 20%, rgba(202,162,90,0.10), transparent 60%),
                   linear-gradient(180deg, #101114 0%, #07080a 100%);
     }
 
-    .video-bg{
-      position:fixed;
-      inset:0;
-      z-index:-2;
-    }
-
+    .video-bg{ position:fixed; inset:0; z-index:-2; }
     .video-bg video{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
+      width:100%; height:100%; object-fit:cover; display:block;
+      background:transparent;
     }
 
-    /* overlay 20% -> 40% */
     .overlay{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      pointer-events:none;
+      position:fixed; inset:0; z-index:-1; pointer-events:none;
       background: linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.40) 100%);
     }
 
-    /* icon bar */
     .icon-bar{
-      position:fixed;
-      left:50%;
-      bottom:28px;
-      transform:translateX(-50%);
-      display:flex;
-      gap:26px;
-      align-items:center;
-      justify-content:center;
-      z-index:10;
-      padding:0 16px;
+      position:fixed; left:50%; bottom:28px; transform:translateX(-50%);
+      display:flex; gap:26px; align-items:center; justify-content:center;
+      z-index:10; padding:0 16px;
     }
 
     .icon-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:64px;
-      height:64px;
-      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      width:64px; height:64px; text-decoration:none;
       color:var(--icon);
       transition: transform .14s ease, color .14s ease, filter .14s ease;
       -webkit-tap-highlight-color:transparent;
@@ -86,15 +60,28 @@
       filter: drop-shadow(0 12px 26px rgba(0,0,0,0.55));
     }
 
-    .icon-link:active{
-      transform: scale(1.06);
-    }
+    .icon-link:active{ transform: scale(1.06); }
 
     .icon{
-      width:44px;   /* <- GROESSE */
-      height:44px;  /* <- GROESSE */
-      fill: currentColor;
-      display:block;
+      width:44px; height:44px;
+      fill: currentColor; display:block;
+    }
+
+    /* STATUS BADGE */
+    .status{
+      position:fixed;
+      top:14px; left:14px;
+      z-index:9999;
+      padding:10px 12px;
+      border-radius:12px;
+      background:rgba(0,0,0,0.55);
+      border:1px solid rgba(255,255,255,0.14);
+      color:rgba(255,255,255,0.9);
+      font-size:12px;
+      letter-spacing:0.3px;
+      backdrop-filter: blur(8px);
+      max-width: calc(100vw - 28px);
+      line-height: 1.25;
     }
 
     @supports (padding: env(safe-area-inset-bottom)){
@@ -104,11 +91,12 @@
 </head>
 
 <body>
+  <div class="status" id="status">Video: pruefe...</div>
 
   <div class="fallback"></div>
 
   <div class="video-bg">
-    <video autoplay muted loop playsinline preload="metadata">
+    <video id="bgvid" autoplay muted loop playsinline preload="metadata">
       <source src="video_landingpage_2.mp4" type="video/mp4" />
     </video>
   </div>
@@ -116,27 +104,40 @@
   <div class="overlay"></div>
 
   <div class="icon-bar">
-
-    <!-- Instagram -->
-    <a class="icon-link"
-       href="https://www.instagram.com/otr_ontour"
-       target="_blank" rel="noopener"
-       aria-label="Instagram">
+    <a class="icon-link" href="https://www.instagram.com/otr_ontour" target="_blank" rel="noopener" aria-label="Instagram">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.3A2.8 2.8 0 1 1 14.8 12 2.8 2.8 0 0 1 12 14.8zM17.75 6.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
       </svg>
     </a>
 
-    <!-- Mail -->
-    <a class="icon-link"
-       href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR"
-       aria-label="Kontakt">
+    <a class="icon-link" href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR" aria-label="Kontakt">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
       </svg>
     </a>
-
   </div>
 
+  <script>
+    const status = document.getElementById('status');
+    const video = document.getElementById('bgvid');
+
+    // 1) Check: can browser even play mp4?
+    const can = video.canPlayType('video/mp4');
+    status.textContent = `Video: pruefe... (canPlayType=${can || 'no'})`;
+
+    // 2) If the mp4 URL is 404, we can detect it with fetch (same origin)
+    fetch('video_landingpage_2.mp4', { method: 'HEAD' })
+      .then(r => {
+        if (!r.ok) status.textContent = `Video: FILE NICHT GEFUNDEN (HTTP ${r.status})`;
+        else status.textContent = `Video: Datei gefunden (HTTP ${r.status}) — lade...`;
+      })
+      .catch(() => {
+        status.textContent = 'Video: HEAD-Check fehlgeschlagen (CORS/Netz)';
+      });
+
+    video.addEventListener('loadeddata', () => status.textContent = 'Video: OK (loadeddata)');
+    video.addEventListener('playing', () => status.textContent = 'Video: PLAYING');
+    video.addEventListener('error', () => status.textContent = 'Video: ERROR (Format/Codec/Quelle)');
+  </script>
 </body>
 </html>
