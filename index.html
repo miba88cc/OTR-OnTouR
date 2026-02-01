@@ -8,27 +8,20 @@
   <style>
     :root {
       --bg: #0b0c0e;
-      --text: #f5f5f5;
+      --icon: rgba(245,245,245,0.85);
+      --icon-hover: #ffffff;
       --accent: #caa25a;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       min-height: 100vh;
       background: var(--bg);
       overflow: hidden;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Text",
-        "Helvetica Neue",
-        Helvetica,
-        Arial,
-        sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Helvetica Neue", Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -39,14 +32,13 @@
       z-index: -2;
       background: var(--bg);
     }
-
     .video-bg video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    /* OVERLAY – 20% → 40% */
+    /* OVERLAY 20% -> 40% */
     .overlay {
       position: fixed;
       inset: 0;
@@ -64,118 +56,32 @@
         );
     }
 
-    /* BUTTON AREA */
-    .actions {
+    /* ICON BAR */
+    .icon-bar {
       position: fixed;
       left: 50%;
       bottom: 28px;
       transform: translateX(-50%);
       display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
+      gap: 22px;
+      align-items: center;
       justify-content: center;
+      z-index: 2;
       padding: 0 16px;
-      z-index: 1;
     }
 
-    .btn {
-      padding: 14px 34px;
-      border-radius: 12px; /* Apple-Style */
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.6px;
+    .icon-link {
+      width: 44px;
+      height: 44px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-      transition:
-        transform 0.12s ease,
-        box-shadow 0.12s ease,
-        background 0.12s ease,
-        border-color 0.12s ease;
-      white-space: nowrap;
-    }
-
-    /* Primary */
-    .btn-primary {
-      color: #0b0c0e;
-      background: linear-gradient(180deg, #e2c07b 0%, #caa25a 100%);
-      box-shadow:
-        0 10px 26px rgba(0,0,0,0.45),
-        inset 0 1px 0 rgba(255,255,255,0.35);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow:
-        0 14px 34px rgba(0,0,0,0.55),
-        inset 0 1px 0 rgba(255,255,255,0.4);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0);
-      box-shadow:
-        0 8px 20px rgba(0,0,0,0.45),
-        inset 0 2px 6px rgba(0,0,0,0.25);
-    }
-
-    /* Secondary */
-    .btn-secondary {
-      color: var(--text);
+      border-radius: 12px; /* Apple-Style */
+      color: var(--icon);
       background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(202,162,90,0.45);
-      box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.35);
       backdrop-filter: blur(6px);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.09);
-      border-color: rgba(202,162,90,0.65);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
-    }
-
-    .btn-secondary:active {
-      transform: translateY(0);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-    }
-
-    /* iOS Safe Area */
-    @supports (padding: env(safe-area-inset-bottom)) {
-      .actions {
-        padding-bottom: env(safe-area-inset-bottom);
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- VIDEO BACKGROUND -->
-  <div class="video-bg">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="video_landingpage_2.mp4" type="video/mp4" />
-    </video>
-  </div>
-
-  <!-- OVERLAY -->
-  <div class="overlay"></div>
-
-  <!-- BUTTONS -->
-  <div class="actions">
-    <a class="btn btn-primary"
-       href="https://www.instagram.com/otr_ontour"
-       target="_blank" rel="noopener">
-      Instagram
-    </a>
-
-    <a class="btn btn-secondary"
-       href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR">
-      Kontakt
-    </a>
-  </div>
-
-</body>
-</html>
+      transition:
+        transform 0.15s ease,
+        box-
