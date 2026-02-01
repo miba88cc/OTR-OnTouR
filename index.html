@@ -8,14 +8,13 @@
   <style>
     :root{
       --bg:#0b0c0e;
-      --icon:rgba(245,245,245,0.88);
+      --icon:rgba(245,245,245,0.92);
       --iconHover:#ffffff;
-      --accent:#caa25a;
     }
 
     *{ box-sizing:border-box; }
 
-    html, body{
+    html,body{
       height:100%;
       margin:0;
       background:var(--bg);
@@ -24,104 +23,92 @@
       -webkit-font-smoothing:antialiased;
     }
 
-    /* Default fallback background (VISIBLE even without video) */
-    .fallback-bg{
+    /* fallback background (visible if video fails) */
+    .fallback{
       position:fixed;
       inset:0;
       z-index:-3;
-      background:
-        radial-gradient(900px 450px at 50% 20%, rgba(202,162,90,0.10), transparent 60%),
-        linear-gradient(180deg, rgba(15,16,18,1) 0%, rgba(7,8,10,1) 100%);
+      background: radial-gradient(900px 450px at 50% 20%, rgba(202,162,90,0.10), transparent 60%),
+                  linear-gradient(180deg, #101114 0%, #07080a 100%);
     }
 
-    /* VIDEO */
     .video-bg{
       position:fixed;
       inset:0;
       z-index:-2;
-      background:transparent;
     }
+
     .video-bg video{
       width:100%;
       height:100%;
       object-fit:cover;
       display:block;
-      background:transparent;
     }
 
-    /* OVERLAY (20% -> 40%) */
+    /* overlay 20% -> 40% */
     .overlay{
       position:fixed;
       inset:0;
       z-index:-1;
       pointer-events:none;
-      background:
-        radial-gradient(700px 350px at 50% 15%, rgba(202,162,90,0.08), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.40) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.40) 100%);
     }
 
-    /* ICON BAR (always visible) */
+    /* icon bar */
     .icon-bar{
       position:fixed;
       left:50%;
       bottom:28px;
       transform:translateX(-50%);
       display:flex;
-      gap:18px;
+      gap:26px;
       align-items:center;
       justify-content:center;
-      z-index:9999; /* ALWAYS on top */
+      z-index:10;
       padding:0 16px;
     }
 
     .icon-link{
-      width:46px;
-      height:46px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      border-radius:12px; /* Apple-ish */
-      color:var(--icon);
-      background:rgba(0,0,0,0.30); /* stronger so you see it even on bright video */
-      border:1px solid rgba(255,255,255,0.16);
-      box-shadow:0 14px 34px rgba(0,0,0,0.45);
-      backdrop-filter:blur(10px);
+      width:64px;
+      height:64px;
       text-decoration:none;
+      color:var(--icon);
+      transition: transform .14s ease, color .14s ease, filter .14s ease;
       -webkit-tap-highlight-color:transparent;
-      transition:transform .14s ease, background .14s ease, border-color .14s ease, box-shadow .14s ease, color .14s ease;
     }
 
     .icon-link:hover{
-      transform:scale(1.08);
-      color:var(--iconHover);
-      background:rgba(0,0,0,0.38);
-      border-color:rgba(202,162,90,0.60);
-      box-shadow:0 18px 46px rgba(0,0,0,0.55);
+      transform: scale(1.10);
+      color: var(--iconHover);
+      filter: drop-shadow(0 12px 26px rgba(0,0,0,0.55));
     }
 
     .icon-link:active{
-      transform:scale(1.03);
+      transform: scale(1.06);
     }
 
     .icon{
-      width:22px;
-      height:22px;
-      fill:currentColor;
+      width:44px;   /* <- GROESSE */
+      height:44px;  /* <- GROESSE */
+      fill: currentColor;
       display:block;
     }
 
     @supports (padding: env(safe-area-inset-bottom)){
-      .icon-bar{ padding-bottom:env(safe-area-inset-bottom); }
+      .icon-bar{ padding-bottom: env(safe-area-inset-bottom); }
     }
   </style>
 </head>
 
 <body>
-  <!-- Visible even if video missing -->
-  <div class="fallback-bg"></div>
+
+  <div class="fallback"></div>
 
   <div class="video-bg">
-    <video id="bgvid" autoplay muted loop playsinline preload="metadata">
+    <video autoplay muted loop playsinline preload="metadata">
       <source src="video_landingpage.mp4" type="video/mp4" />
     </video>
   </div>
@@ -129,29 +116,27 @@
   <div class="overlay"></div>
 
   <div class="icon-bar">
+
     <!-- Instagram -->
-    <a class="icon-link" href="https://www.instagram.com/otr_ontour" target="_blank" rel="noopener" aria-label="Instagram">
+    <a class="icon-link"
+       href="https://www.instagram.com/otr_ontour"
+       target="_blank" rel="noopener"
+       aria-label="Instagram">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.3A2.8 2.8 0 1 1 14.8 12 2.8 2.8 0 0 1 12 14.8zM17.75 6.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
       </svg>
     </a>
 
     <!-- Mail -->
-    <a class="icon-link" href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR" aria-label="Kontakt">
+    <a class="icon-link"
+       href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR"
+       aria-label="Kontakt">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
       </svg>
     </a>
+
   </div>
 
-  <script>
-    // If video fails (missing/blocked/too big), keep fallback (already visible).
-    // If video loads, we don't need to do anything.
-    const v = document.getElementById('bgvid');
-    v.addEventListener('error', () => {
-      // Optional: force-hide video element so fallback shows clean
-      v.style.display = 'none';
-    });
-  </script>
 </body>
 </html>
