@@ -11,6 +11,7 @@
       --icon:rgba(245,245,245,0.92);
       --iconHover:#ffffff;
     }
+
     *{ box-sizing:border-box; }
 
     html,body{
@@ -22,6 +23,7 @@
       -webkit-font-smoothing:antialiased;
     }
 
+    /* STAGE */
     .stage{
       position:fixed;
       inset:0;
@@ -31,7 +33,12 @@
         linear-gradient(180deg, #101114 0%, #07080a 100%);
     }
 
-    .video-bg{ position:absolute; inset:0; z-index:0; }
+    .video-bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+    }
+
     .video-bg video{
       width:100%;
       height:100%;
@@ -39,14 +46,20 @@
       display:block;
     }
 
+    /* OVERLAY 20% → 40% */
     .overlay{
       position:absolute;
       inset:0;
       z-index:1;
       pointer-events:none;
-      background: linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.40) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.20) 0%,
+        rgba(0,0,0,0.40) 100%
+      );
     }
 
+    /* ICONS */
     .icon-bar{
       position:fixed;
       left:50%;
@@ -68,7 +81,10 @@
       height:70px;
       text-decoration:none;
       color:var(--icon);
-      transition: transform .14s ease, color .14s ease, filter .14s ease;
+      transition:
+        transform .14s ease,
+        color .14s ease,
+        filter .14s ease;
       -webkit-tap-highlight-color:transparent;
     }
 
@@ -78,7 +94,9 @@
       filter: drop-shadow(0 12px 26px rgba(0,0,0,0.55));
     }
 
-    .icon-link:active{ transform: scale(1.06); }
+    .icon-link:active{
+      transform: scale(1.06);
+    }
 
     .icon{
       width:52px;
@@ -87,40 +105,26 @@
       display:block;
     }
 
-    /* optional mini status (kannst du spaeter entfernen) */
-    .status{
-      position:fixed;
-      top:14px; left:14px;
-      z-index:9999;
-      padding:10px 12px;
-      border-radius:12px;
-      background:rgba(0,0,0,0.55);
-      border:1px solid rgba(255,255,255,0.14);
-      color:rgba(255,255,255,0.9);
-      font-size:12px;
-      letter-spacing:0.3px;
-      backdrop-filter: blur(8px);
-    }
-
+    /* iOS Safe Area */
     @supports (padding: env(safe-area-inset-bottom)){
-      .icon-bar{ padding-bottom: env(safe-area-inset-bottom); }
+      .icon-bar{
+        padding-bottom: env(safe-area-inset-bottom);
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="status" id="status">Video: starte...</div>
-
   <div class="stage">
     <div class="video-bg">
-      <video id="bgvid"
-             autoplay
-             muted
-             loop
-             playsinline
-             webkit-playsinline
-             preload="auto">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="auto">
         <source src="video_landingpage_2.mp4" type="video/mp4" />
       </video>
     </div>
@@ -128,47 +132,28 @@
   </div>
 
   <div class="icon-bar">
-    <a class="icon-link" href="https://www.instagram.com/otr_ontour" target="_blank" rel="noopener" aria-label="Instagram">
+
+    <!-- Instagram -->
+    <a class="icon-link"
+       href="https://www.instagram.com/otr_ontour"
+       target="_blank"
+       rel="noopener"
+       aria-label="Instagram">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.3A2.8 2.8 0 1 1 14.8 12 2.8 2.8 0 0 1 12 14.8zM17.75 6.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
       </svg>
     </a>
 
-    <a class="icon-link" href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR" aria-label="Kontakt">
+    <!-- Mail -->
+    <a class="icon-link"
+       href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR"
+       aria-label="Kontakt">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
       </svg>
     </a>
+
   </div>
-
-  <script>
-    const status = document.getElementById('status');
-    const v = document.getElementById('bgvid');
-
-    // always enforce muted for autoplay policies
-    v.muted = true;
-
-    function tryPlay(){
-      const p = v.play();
-      if (p && typeof p.catch === 'function'){
-        p.then(() => status.textContent = 'Video: PLAYING')
-         .catch(() => status.textContent = 'Video: blockiert — tippe einmal');
-      }
-    }
-
-    v.addEventListener('loadeddata', () => status.textContent = 'Video: geladen');
-    v.addEventListener('playing', () => status.textContent = 'Video: PLAYING');
-    v.addEventListener('error', () => status.textContent = 'Video: ERROR (Codec/Datei)');
-
-    // try immediately
-    tryPlay();
-
-    // if iOS blocks, start on first user interaction
-    const kick = () => { tryPlay(); window.removeEventListener('touchstart', kick); window.removeEventListener('click', kick); window.removeEventListener('scroll', kick); };
-    window.addEventListener('touchstart', kick, { passive:true });
-    window.addEventListener('click', kick);
-    window.addEventListener('scroll', kick, { passive:true });
-  </script>
 
 </body>
 </html>
