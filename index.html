@@ -11,7 +11,6 @@
       --icon:rgba(245,245,245,0.92);
       --iconHover:#ffffff;
     }
-
     *{ box-sizing:border-box; }
 
     html,body{
@@ -23,32 +22,51 @@
       -webkit-font-smoothing:antialiased;
     }
 
-    .fallback{
-      position:fixed; inset:0; z-index:-3;
-      background: radial-gradient(900px 450px at 50% 20%, rgba(202,162,90,0.10), transparent 60%),
-                  linear-gradient(180deg, #101114 0%, #07080a 100%);
+    .stage{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      background:
+        radial-gradient(900px 450px at 50% 20%, rgba(202,162,90,0.10), transparent 60%),
+        linear-gradient(180deg, #101114 0%, #07080a 100%);
     }
 
-    .video-bg{ position:fixed; inset:0; z-index:-2; }
+    .video-bg{ position:absolute; inset:0; z-index:0; }
     .video-bg video{
-      width:100%; height:100%; object-fit:cover; display:block;
-      background:transparent;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
     .overlay{
-      position:fixed; inset:0; z-index:-1; pointer-events:none;
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
       background: linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.40) 100%);
     }
 
     .icon-bar{
-      position:fixed; left:50%; bottom:28px; transform:translateX(-50%);
-      display:flex; gap:26px; align-items:center; justify-content:center;
-      z-index:10; padding:0 16px;
+      position:fixed;
+      left:50%;
+      bottom:28px;
+      transform:translateX(-50%);
+      display:flex;
+      gap:26px;
+      align-items:center;
+      justify-content:center;
+      z-index:2;
+      padding:0 16px;
     }
 
     .icon-link{
-      display:inline-flex; align-items:center; justify-content:center;
-      width:64px; height:64px; text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:70px;
+      height:70px;
+      text-decoration:none;
       color:var(--icon);
       transition: transform .14s ease, color .14s ease, filter .14s ease;
       -webkit-tap-highlight-color:transparent;
@@ -63,11 +81,13 @@
     .icon-link:active{ transform: scale(1.06); }
 
     .icon{
-      width:44px; height:44px;
-      fill: currentColor; display:block;
+      width:52px;
+      height:52px;
+      fill: currentColor;
+      display:block;
     }
 
-    /* STATUS BADGE */
+    /* optional mini status (kannst du spaeter entfernen) */
     .status{
       position:fixed;
       top:14px; left:14px;
@@ -80,8 +100,6 @@
       font-size:12px;
       letter-spacing:0.3px;
       backdrop-filter: blur(8px);
-      max-width: calc(100vw - 28px);
-      line-height: 1.25;
     }
 
     @supports (padding: env(safe-area-inset-bottom)){
@@ -91,17 +109,23 @@
 </head>
 
 <body>
-  <div class="status" id="status">Video: pruefe...</div>
 
-  <div class="fallback"></div>
+  <div class="status" id="status">Video: starte...</div>
 
-  <div class="video-bg">
-    <video id="bgvid" autoplay muted loop playsinline preload="metadata">
-      <source src="video_landingpage_2.mp4" type="video/mp4" />
-    </video>
+  <div class="stage">
+    <div class="video-bg">
+      <video id="bgvid"
+             autoplay
+             muted
+             loop
+             playsinline
+             webkit-playsinline
+             preload="auto">
+        <source src="video_landingpage_2.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="overlay"></div>
   </div>
-
-  <div class="overlay"></div>
 
   <div class="icon-bar">
     <a class="icon-link" href="https://www.instagram.com/otr_ontour" target="_blank" rel="noopener" aria-label="Instagram">
@@ -119,25 +143,32 @@
 
   <script>
     const status = document.getElementById('status');
-    const video = document.getElementById('bgvid');
+    const v = document.getElementById('bgvid');
 
-    // 1) Check: can browser even play mp4?
-    const can = video.canPlayType('video/mp4');
-    status.textContent = `Video: pruefe... (canPlayType=${can || 'no'})`;
+    // always enforce muted for autoplay policies
+    v.muted = true;
 
-    // 2) If the mp4 URL is 404, we can detect it with fetch (same origin)
-    fetch('video_landingpage_2.mp4', { method: 'HEAD' })
-      .then(r => {
-        if (!r.ok) status.textContent = `Video: FILE NICHT GEFUNDEN (HTTP ${r.status})`;
-        else status.textContent = `Video: Datei gefunden (HTTP ${r.status}) — lade...`;
-      })
-      .catch(() => {
-        status.textContent = 'Video: HEAD-Check fehlgeschlagen (CORS/Netz)';
-      });
+    function tryPlay(){
+      const p = v.play();
+      if (p && typeof p.catch === 'function'){
+        p.then(() => status.textContent = 'Video: PLAYING')
+         .catch(() => status.textContent = 'Video: blockiert — tippe einmal');
+      }
+    }
 
-    video.addEventListener('loadeddata', () => status.textContent = 'Video: OK (loadeddata)');
-    video.addEventListener('playing', () => status.textContent = 'Video: PLAYING');
-    video.addEventListener('error', () => status.textContent = 'Video: ERROR (Format/Codec/Quelle)');
+    v.addEventListener('loadeddata', () => status.textContent = 'Video: geladen');
+    v.addEventListener('playing', () => status.textContent = 'Video: PLAYING');
+    v.addEventListener('error', () => status.textContent = 'Video: ERROR (Codec/Datei)');
+
+    // try immediately
+    tryPlay();
+
+    // if iOS blocks, start on first user interaction
+    const kick = () => { tryPlay(); window.removeEventListener('touchstart', kick); window.removeEventListener('click', kick); window.removeEventListener('scroll', kick); };
+    window.addEventListener('touchstart', kick, { passive:true });
+    window.addEventListener('click', kick);
+    window.addEventListener('scroll', kick, { passive:true });
   </script>
+
 </body>
 </html>
