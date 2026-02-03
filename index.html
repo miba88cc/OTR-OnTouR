@@ -2,19 +2,21 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>OTR-OnTouR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OTR-OnTouR</title>
 
   <style>
     :root{
       --bg:#0b0c0e;
-      --icon:rgba(245,245,245,0.92);
+      --icon: rgba(245,245,245,0.92);
       --iconHover:#ffffff;
+      --overlayTop: 0.20;    /* 20% */
+      --overlayBottom: 0.40; /* 40% */
     }
 
     *{ box-sizing:border-box; }
 
-    html,body{
+    html, body{
       height:100%;
       margin:0;
       background:var(--bg);
@@ -23,7 +25,7 @@
       -webkit-font-smoothing:antialiased;
     }
 
-    /* STAGE */
+    /* STAGE + fallback (sichtbar wenn Video nicht laedt) */
     .stage{
       position:fixed;
       inset:0;
@@ -33,10 +35,12 @@
         linear-gradient(180deg, #101114 0%, #07080a 100%);
     }
 
+    /* VIDEO */
     .video-bg{
       position:absolute;
       inset:0;
       z-index:0;
+      overflow:hidden;
     }
 
     .video-bg video{
@@ -44,9 +48,10 @@
       height:100%;
       object-fit:cover;
       display:block;
+      background:#000; /* verhindert Flash */
     }
 
-    /* OVERLAY 20% → 40% */
+    /* OVERLAY 20% -> 40% */
     .overlay{
       position:absolute;
       inset:0;
@@ -54,12 +59,12 @@
       pointer-events:none;
       background: linear-gradient(
         180deg,
-        rgba(0,0,0,0.20) 0%,
-        rgba(0,0,0,0.40) 100%
+        rgba(0,0,0,var(--overlayTop)) 0%,
+        rgba(0,0,0,var(--overlayBottom)) 100%
       );
     }
 
-    /* ICONS */
+    /* ICON BAR */
     .icon-bar{
       position:fixed;
       left:50%;
@@ -77,15 +82,13 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      width:70px;
-      height:70px;
+      width:72px;
+      height:72px;
       text-decoration:none;
       color:var(--icon);
-      transition:
-        transform .14s ease,
-        color .14s ease,
-        filter .14s ease;
+      transition: transform .14s ease, color .14s ease, filter .14s ease;
       -webkit-tap-highlight-color:transparent;
+      user-select:none;
     }
 
     .icon-link:hover{
@@ -99,8 +102,8 @@
     }
 
     .icon{
-      width:52px;
-      height:52px;
+      width:56px;
+      height:56px;
       fill: currentColor;
       display:block;
     }
@@ -124,10 +127,13 @@
         loop
         playsinline
         webkit-playsinline
-        preload="auto">
-        <source src="video_3.mp4" type="video/mp4" />
+        preload="auto"
+        poster="data:image/gif;base64,R0lGODlhAQABAAAAACw=">
+        <!-- Neues Video: video_3.mp4 + Cache-Break -->
+        <source src="video_3.mp4?v=20260203_02" type="video/mp4" />
       </video>
     </div>
+
     <div class="overlay"></div>
   </div>
 
@@ -153,9 +159,7 @@
       </svg>
     </a>
 
-    
   </div>
 
 </body>
 </html>
-
