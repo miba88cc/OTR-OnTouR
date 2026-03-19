@@ -4,10 +4,14 @@ function selectOffer(offerName) {
 
   if (offerInput) {
     offerInput.value = offerName;
+    offerInput.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
   if (formSection) {
-    formSection.scrollIntoView({ behavior: "smooth" });
+    formSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
   }
 }
 
