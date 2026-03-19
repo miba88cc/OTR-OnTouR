@@ -15,6 +15,17 @@ function selectOffer(offerName) {
   }
 }
 
+const form = document.getElementById("form");
+const submitBtn = document.getElementById("submitBtn");
+const popup = document.getElementById("successPopup");
+
+function closePopup() {
+  if (popup) {
+    popup.classList.remove("active");
+    popup.setAttribute("aria-hidden", "true");
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const heroVideo = document.getElementById("heroVideo");
 
@@ -41,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     heroVideo.addEventListener("loadeddata", tryPlayHero);
     heroVideo.addEventListener("canplay", tryPlayHero);
     window.addEventListener("pageshow", tryPlayHero);
+
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) {
         tryPlayHero();
@@ -98,4 +110,59 @@ document.addEventListener("DOMContentLoaded", () => {
       hoverVideo.currentTime = 0;
     });
   });
+
+  if (form) {
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      if (submitBtn) {
+        submitBtn.innerHTML = "Wird gesendet...";
+        submitBtn.disabled = true;
+      }
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: json
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200) {
+          if (popup) {
+            popup.classList.add("active");
+            popup.setAttribute("aria-hidden", "false");
+          }
+
+          if (typeof gtag !== "undefined") {
+            gtag("event", "lead_submitted", {
+              event_category: "Form",
+              event_label: object.angebot || "unknown"
+            });
+          }
+
+          form.reset();
+        } else {
+          alert("Fehler beim Senden. Bitte erneut versuchen.");
+          console.error("Web3Forms error:", data);
+        }
+      } catch (error) {
+        alert("Netzwerkfehler. Bitte erneut versuchen.");
+        console.error("Submit error:", error);
+      } finally {
+        if (submitBtn) {
+          submitBtn.innerHTML = "Anfrage senden";
+          submitBtn.disabled = false;
+        }
+      }
+    });
+  }
 });
