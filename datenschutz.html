@@ -1,185 +1,116 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Datenschutz – OTR-OnTouR</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum – OTR-OnTouR</title>
 
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLWQMN5WKY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NLWQMN5WKY');
-  </script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NLWQMN5WKY"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-NLWQMN5WKY');
+</script>
 
-  <link rel="icon" type="image/png" sizes="72x72" href="favicon.png">
-  <link rel="shortcut icon" href="favicon.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="favicon.png">
+<link rel="icon" href="favicon.png">
 
-  <style>
-    :root{
-      --bg:#0b0c0e;
-      --text:#f5f5f5;
-      --muted:#c9cdd3;
-      --gold:#caa25a;
-      --line:rgba(255,255,255,0.08);
-      --max:1180px;
-    }
+<style>
+:root{
+  --bg:#0b0c0e;
+  --text:#f5f5f5;
+  --gold:#caa25a;
+  --line:rgba(255,255,255,0.08);
+}
 
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Arial;
+}
 
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
-      -webkit-font-smoothing:antialiased;
-      overflow-x:hidden;
-    }
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 42px;
+}
 
-    a{ color:inherit; text-decoration:none; }
+.logo-img{height:42px;}
 
-    .page-shell{
-      min-height:100vh;
-      background:
-        radial-gradient(900px 450px at 50% -10%, rgba(202,162,90,0.08), transparent 60%),
-        linear-gradient(180deg, #0b0c0e 0%, #0e1014 100%);
-    }
+.nav-links{
+  display:flex;
+  gap:20px;
+}
 
-    .navbar{
-      position:relative;
-      z-index:3;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:20px;
-      padding:28px 42px;
-      width:min(var(--max), calc(100% - 40px));
-      margin:0 auto;
-    }
+.nav-cta{
+  border:1px solid rgba(255,255,255,0.2);
+  padding:10px 16px;
+  border-radius:999px;
+}
 
-    .logo-wrap{
-      display:flex;
-      align-items:center;
-    }
+.container{
+  max-width:920px;
+  margin:auto;
+  padding:0 20px 80px;
+}
 
-    .logo-img{
-      height:46px;
-    }
+.back-link{
+  color:var(--gold);
+  font-size:14px;
+  margin:10px 0 20px;
+  display:inline-block;
+}
 
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:22px;
-      flex-wrap:wrap;
-    }
+.card{
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:40px 34px;
+  background:rgba(255,255,255,0.02);
+}
 
-    .nav-links a{
-      font-size:15px;
-    }
+.eyebrow{
+  color:var(--gold);
+  font-size:12px;
+  letter-spacing:0.15em;
+}
 
-    .nav-cta{
-      padding:12px 18px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.18);
-      background:rgba(255,255,255,0.06);
-    }
+h1{
+  font-size:42px;
+  margin:10px 0 20px;
+}
 
-    .legal-wrap{
-      width:min(920px, calc(100% - 40px));
-      margin:0 auto;
-      padding:30px 0 90px;
-    }
+h2{
+  margin-top:30px;
+}
 
-    .legal-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:40px 34px;
-    }
+p{
+  color:#d7d7d7;
+  line-height:1.6;
+}
 
-    .back-btn{
-      display:inline-block;
-      margin-bottom:20px;
-      color:var(--gold);
-      font-size:14px;
-      font-weight:600;
-    }
+.footer{
+  text-align:center;
+  padding:30px;
+  border-top:1px solid var(--line);
+}
+.footer a{color:var(--gold);}
 
-    .eyebrow{
-      color:var(--gold);
-      letter-spacing:0.16em;
-      font-size:12px;
-      margin-bottom:12px;
-    }
-
-    h1{
-      margin:0 0 10px 0;
-      font-size:clamp(34px, 5vw, 56px);
-      line-height:1.02;
-    }
-
-    h2{
-      margin:30px 0 10px 0;
-      font-size:clamp(22px, 3vw, 34px);
-    }
-
-    p{
-      margin:0 0 14px 0;
-      font-size:17px;
-      line-height:1.65;
-      color:#d7d7d7;
-    }
-
-    .legal-meta{
-      color:#caa25a;
-      font-size:15px;
-      margin-bottom:22px;
-    }
-
-    .site-footer{
-      padding:22px 20px 36px;
-      text-align:center;
-      border-top:1px solid rgba(255,255,255,0.06);
-      background:#0a0b0d;
-    }
-
-    .site-footer p{
-      margin:0 0 8px 0;
-      font-size:14px;
-      color:#aab0b8;
-    }
-
-    .footer-location{
-      color:#d6c5a0 !important;
-    }
-
-    .footer-links{
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-      margin-top:6px;
-    }
-
-    .footer-links a{
-      color:var(--gold);
-      font-size:14px;
-    }
-  </style>
+@media(max-width:600px){
+  h1{font-size:30px;}
+  .navbar{flex-direction:column;gap:10px;}
+}
+</style>
 </head>
 
 <body>
-<div class="page-shell">
 
 <nav class="navbar">
-  <a href="index.html#top" class="logo-wrap">
+  <a href="index.html#top">
     <img src="Logo White_OTR-OnTouR.png" class="logo-img">
   </a>
-
   <div class="nav-links">
     <a href="index.html#abos">Abos</a>
     <a href="index.html#portfolio">Portfolio</a>
@@ -188,57 +119,51 @@
   </div>
 </nav>
 
-<main class="legal-wrap">
-<section class="legal-card">
+<div class="container">
 
-<a href="index.html" class="back-btn">← Zurück zur Website</a>
+  <!-- BACK BUTTON -->
+  <a href="index.html#top" class="back-link">← Zurück zur Website</a>
 
-<p class="eyebrow">Rechtliches</p>
-<h1>Datenschutzerklärung</h1>
-<p class="legal-meta"><strong>Stand:</strong> 19.03.2026</p>
+  <div class="card">
+    <p class="eyebrow">RECHTLICHES</p>
+    <h1>Impressum</h1>
 
-<p>Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Datenschutzerklärung informiert über Art, Umfang und Zweck der Bearbeitung personenbezogener Daten auf dieser Website.</p>
+    <h2>Angaben gemäss Schweizer Recht</h2>
+    <p>
+      OTR-OnTouR by Milan Bachofner<br>
+      Bernstrasse 68<br>
+      3175 Flamatt<br>
+      Schweiz
+    </p>
 
-<h2>1. Verantwortliche Stelle</h2>
-<p>
-OTR-OnTouR by Milan Bachofner<br>
-Bernstrasse 68<br>
-3175 Flamatt<br>
-Schweiz<br>
-E-Mail: <a href="mailto:info@otr-ontour.com" style="color:#caa25a;">info@otr-ontour.com</a>
-</p>
+    <h2>Kontakt</h2>
+    <p>
+      E-Mail: <span style="color:#caa25a;">info@otr-ontour.com</span>
+    </p>
 
-<h2>2. Erhebung technischer Daten</h2>
-<p>Beim Besuch dieser Website können automatisch technische Daten wie IP-Adresse, Browsertyp, Betriebssystem, Datum und Uhrzeit des Zugriffs verarbeitet werden.</p>
+    <h2>Haftungsausschluss</h2>
+    <p>
+      Inhalte wurden mit grösster Sorgfalt erstellt, jedoch ohne Gewähr.
+    </p>
 
-<h2>3. Kontaktaufnahme</h2>
-<p>Wenn Sie per E-Mail oder über das Anfrageformular Kontakt aufnehmen, werden Ihre Angaben zur Bearbeitung gespeichert.</p>
+    <h2>Haftung für Links</h2>
+    <p>
+      Keine Haftung für externe Inhalte.
+    </p>
 
-<h2>4. Google Analytics</h2>
-<p>Diese Website verwendet Google Analytics zur Analyse der Nutzung.</p>
+    <h2>Urheberrechte</h2>
+    <p>
+      Inhalte sind urheberrechtlich geschützt.
+    </p>
 
-<h2>5. Cookies</h2>
-<p>Diese Website kann Cookies verwenden.</p>
-
-<h2>6. Ihre Rechte</h2>
-<p>Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten.</p>
-
-<h2>7. Änderungen</h2>
-<p>Diese Datenschutzerklärung kann jederzeit angepasst werden.</p>
-
-</section>
-</main>
-
+  </div>
 </div>
 
-<footer class="site-footer">
-  <p>© 2026 OTR-OnTouR by Milan Bachofner</p>
-  <p class="footer-location">Flamatt, Fribourg, Schweiz</p>
-  <div class="footer-links">
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-  </div>
-</footer>
+<div class="footer">
+  <p>© 2026 OTR-OnTouR</p>
+  <p>Flamatt, Schweiz</p>
+  <a href="datenschutz.html">Datenschutz</a>
+</div>
 
 </body>
 </html>
