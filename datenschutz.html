@@ -62,33 +62,23 @@
     }
 
     .logo-wrap{
-      flex:0 0 auto;
       display:flex;
       align-items:center;
-      justify-content:center;
     }
 
     .logo-img{
-      display:block;
       height:46px;
-      width:auto;
-      object-fit:contain;
     }
 
     .nav-links{
       display:flex;
       align-items:center;
-      justify-content:flex-end;
       gap:22px;
       flex-wrap:wrap;
-      min-width:0;
     }
 
     .nav-links a{
-      color:#f0f0f0;
       font-size:15px;
-      line-height:1.1;
-      white-space:nowrap;
     }
 
     .nav-cta{
@@ -109,32 +99,32 @@
       border:1px solid var(--line);
       border-radius:24px;
       padding:40px 34px;
-      overflow:hidden;
+    }
+
+    .back-btn{
+      display:inline-block;
+      margin-bottom:20px;
+      color:var(--gold);
+      font-size:14px;
+      font-weight:600;
     }
 
     .eyebrow{
       color:var(--gold);
-      text-transform:uppercase;
       letter-spacing:0.16em;
       font-size:12px;
-      margin:0 0 12px 0;
+      margin-bottom:12px;
     }
 
     h1{
       margin:0 0 10px 0;
       font-size:clamp(34px, 5vw, 56px);
       line-height:1.02;
-      overflow-wrap:anywhere;
-      word-break:break-word;
-      hyphens:auto;
     }
 
     h2{
       margin:30px 0 10px 0;
       font-size:clamp(22px, 3vw, 34px);
-      line-height:1.08;
-      overflow-wrap:anywhere;
-      word-break:break-word;
     }
 
     p{
@@ -142,7 +132,6 @@
       font-size:17px;
       line-height:1.65;
       color:#d7d7d7;
-      overflow-wrap:anywhere;
     }
 
     .legal-meta{
@@ -180,151 +169,76 @@
       color:var(--gold);
       font-size:14px;
     }
-
-    @media (max-width: 860px){
-      .navbar{
-        padding:20px 22px;
-        flex-direction:column;
-        gap:12px;
-      }
-
-      .logo-img{ height:38px; }
-
-      .nav-links{
-        justify-content:center;
-        gap:10px 14px;
-      }
-
-      .nav-links a{ font-size:14px; }
-
-      .nav-cta{
-        padding:10px 16px;
-      }
-
-      .legal-wrap{
-        padding:20px 0 72px;
-      }
-
-      .legal-card{
-        padding:28px 20px;
-        border-radius:20px;
-      }
-
-      h1{
-        font-size:clamp(28px, 8.8vw, 40px);
-        line-height:1.05;
-      }
-
-      h2{
-        font-size:clamp(20px, 6vw, 30px);
-      }
-
-      p{
-        font-size:16px;
-      }
-    }
-
-    @media (max-width: 480px){
-      .navbar{
-        width:calc(100% - 24px);
-        padding:18px 0;
-        gap:10px;
-      }
-
-      .logo-img{ height:34px; }
-
-      .nav-links{ gap:8px 12px; }
-
-      .nav-links a{ font-size:13px; }
-
-      .nav-cta{
-        padding:9px 14px;
-      }
-
-      .legal-wrap{
-        width:calc(100% - 24px);
-      }
-
-      .legal-card{
-        padding:24px 16px;
-      }
-
-      h1{
-        font-size:clamp(24px, 8vw, 34px);
-      }
-
-      h2{
-        font-size:clamp(18px, 6.2vw, 26px);
-      }
-
-      p{
-        font-size:15px;
-        line-height:1.7;
-      }
-    }
   </style>
 </head>
+
 <body>
-  <div class="page-shell">
-    <nav class="navbar">
-      <a href="index.html#top" class="logo-wrap" aria-label="OTR-OnTouR Startseite">
-        <img src="Logo White_OTR-OnTouR.png" alt="OTR-OnTouR Logo" class="logo-img">
-      </a>
+<div class="page-shell">
 
-      <div class="nav-links">
-        <a href="index.html#abos">Abos</a>
-        <a href="index.html#portfolio">Portfolio</a>
-        <a href="index.html#einzelprojekt">Einzelprojekt</a>
-        <a href="index.html#anfrage" class="nav-cta">Anfrage</a>
-      </div>
-    </nav>
+<nav class="navbar">
+  <a href="index.html#top" class="logo-wrap">
+    <img src="Logo White_OTR-OnTouR.png" class="logo-img">
+  </a>
 
-    <main class="legal-wrap">
-      <section class="legal-card">
-        <p class="eyebrow">Rechtliches</p>
-        <h1>Datenschutzerklärung</h1>
-        <p class="legal-meta"><strong>Stand:</strong> 19.03.2026</p>
-
-        <p>Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Datenschutzerklärung informiert über Art, Umfang und Zweck der Bearbeitung personenbezogener Daten auf dieser Website.</p>
-
-        <h2>1. Verantwortliche Stelle</h2>
-        <p>
-          OTR-OnTouR by Milan Bachofner<br>
-          Bernstrasse 68<br>
-          3175 Flamatt<br>
-          Schweiz<br>
-          E-Mail: <a href="mailto:info@otr-ontour.com" style="color:#caa25a;">info@otr-ontour.com</a>
-        </p>
-
-        <h2>2. Erhebung technischer Daten</h2>
-        <p>Beim Besuch dieser Website können automatisch technische Daten wie IP-Adresse, Browsertyp, Betriebssystem, Datum und Uhrzeit des Zugriffs verarbeitet werden. Diese Daten dienen der Stabilität, Sicherheit und technischen Bereitstellung der Website.</p>
-
-        <h2>3. Kontaktaufnahme</h2>
-        <p>Wenn Sie per E-Mail oder über das Anfrageformular Kontakt aufnehmen, werden die von Ihnen übermittelten Angaben zur Bearbeitung Ihrer Anfrage verwendet.</p>
-
-        <h2>4. Google Analytics</h2>
-        <p>Diese Website verwendet Google Analytics, einen Webanalysedienst von Google. Google Analytics verwendet Cookies, die eine Analyse der Benutzung der Website ermöglichen.</p>
-        <p>Die durch Cookies erzeugten Informationen über Ihre Benutzung dieser Website können an Server von Google übertragen und dort gespeichert werden.</p>
-
-        <h2>5. Cookies</h2>
-        <p>Diese Website kann Cookies verwenden. Cookies dienen dazu, das Angebot nutzerfreundlicher, effektiver und sicherer zu machen.</p>
-
-        <h2>6. Ihre Rechte</h2>
-        <p>Sie haben im Rahmen des anwendbaren Datenschutzrechts das Recht auf Auskunft, Berichtigung und Löschung Ihrer personenbezogenen Daten.</p>
-
-        <h2>7. Änderungen</h2>
-        <p>Diese Datenschutzerklärung kann jederzeit angepasst werden. Es gilt die jeweils auf dieser Website veröffentlichte Version.</p>
-      </section>
-    </main>
+  <div class="nav-links">
+    <a href="index.html#abos">Abos</a>
+    <a href="index.html#portfolio">Portfolio</a>
+    <a href="index.html#einzelprojekt">Einzelprojekt</a>
+    <a href="index.html#anfrage" class="nav-cta">Anfrage</a>
   </div>
+</nav>
 
-  <footer class="site-footer">
-    <p>© 2026 OTR-OnTouR by Milan Bachofner</p>
-    <p class="footer-location">Flamatt, Fribourg, Schweiz</p>
-    <div class="footer-links">
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-    </div>
-  </footer>
+<main class="legal-wrap">
+<section class="legal-card">
+
+<a href="index.html" class="back-btn">← Zurück zur Website</a>
+
+<p class="eyebrow">Rechtliches</p>
+<h1>Datenschutzerklärung</h1>
+<p class="legal-meta"><strong>Stand:</strong> 19.03.2026</p>
+
+<p>Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Datenschutzerklärung informiert über Art, Umfang und Zweck der Bearbeitung personenbezogener Daten auf dieser Website.</p>
+
+<h2>1. Verantwortliche Stelle</h2>
+<p>
+OTR-OnTouR by Milan Bachofner<br>
+Bernstrasse 68<br>
+3175 Flamatt<br>
+Schweiz<br>
+E-Mail: <a href="mailto:info@otr-ontour.com" style="color:#caa25a;">info@otr-ontour.com</a>
+</p>
+
+<h2>2. Erhebung technischer Daten</h2>
+<p>Beim Besuch dieser Website können automatisch technische Daten wie IP-Adresse, Browsertyp, Betriebssystem, Datum und Uhrzeit des Zugriffs verarbeitet werden.</p>
+
+<h2>3. Kontaktaufnahme</h2>
+<p>Wenn Sie per E-Mail oder über das Anfrageformular Kontakt aufnehmen, werden Ihre Angaben zur Bearbeitung gespeichert.</p>
+
+<h2>4. Google Analytics</h2>
+<p>Diese Website verwendet Google Analytics zur Analyse der Nutzung.</p>
+
+<h2>5. Cookies</h2>
+<p>Diese Website kann Cookies verwenden.</p>
+
+<h2>6. Ihre Rechte</h2>
+<p>Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten.</p>
+
+<h2>7. Änderungen</h2>
+<p>Diese Datenschutzerklärung kann jederzeit angepasst werden.</p>
+
+</section>
+</main>
+
+</div>
+
+<footer class="site-footer">
+  <p>© 2026 OTR-OnTouR by Milan Bachofner</p>
+  <p class="footer-location">Flamatt, Fribourg, Schweiz</p>
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+
 </body>
 </html>
