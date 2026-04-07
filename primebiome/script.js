@@ -52,18 +52,3 @@ function setActiveLink() {
 
 setActiveLink();
 window.addEventListener('scroll', setActiveLink);
-
-const productImage = document.getElementById('productImage');
-const productFallback = document.getElementById('productFallback');
-
-if (productImage) {
-  productImage.addEventListener('error', () => {
-    productImage.style.display = 'none';
-    productFallback.style.display = 'flex';
-  });
-
-  if (productImage.complete && productImage.naturalWidth === 0) {
-    productImage.style.display = 'none';
-    productFallback.style.display = 'flex';
-  }
-}
