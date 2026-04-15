@@ -6,20 +6,31 @@
   <title>OTR-OnTouR | Foto & Video Produktion</title>
   <meta name="description" content="OTR-OnTouR by Milan Bachofner – professionelle Foto- und Videoproduktion für Events, Business, Social Media und Markenauftritte." />
 
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLWQMN5WKY"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NLWQMN5WKY');
+
+    const GA_MEASUREMENT_ID = "G-NLWQMN5WKY";
+
+    function loadGoogleAnalytics() {
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
+
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_MEASUREMENT_ID;
+      document.head.appendChild(script);
+
+      gtag("js", new Date());
+      gtag("config", GA_MEASUREMENT_ID);
+    }
   </script>
 
   <link rel="icon" type="image/png" sizes="72x72" href="favicon.png">
   <link rel="shortcut icon" href="favicon.png">
   <link rel="apple-touch-icon" sizes="72x72" href="favicon.png">
 
-  <link rel="stylesheet" href="style.css?v=20260404_01" />
+  <link rel="stylesheet" href="style.css?v=20260415_cookie_01" />
 </head>
 <body id="top">
 
@@ -34,7 +45,7 @@
         webkit-playsinline
         preload="metadata"
         poster="portrait_branding.webp">
-        <source src="landingpage.mp4?v=20260404_01" type="video/mp4">
+        <source src="landingpage.mp4?v=20260415_01" type="video/mp4">
       </video>
     </div>
 
@@ -405,6 +416,23 @@
     </div>
   </div>
 
-  <script src="script.js?v=20260404_01"></script>
+  <div id="cookieBanner" class="cookie-banner" aria-hidden="true">
+    <div class="cookie-banner-inner">
+      <div class="cookie-banner-text">
+        <h3>Cookie-Einstellungen</h3>
+        <p>
+          Diese Website verwendet Cookies und Google Analytics, um die Nutzung der Website zu analysieren und das Erlebnis zu verbessern.
+          Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.
+        </p>
+      </div>
+
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn btn-outline cookie-btn" id="cookieDecline">Ablehnen</button>
+        <button type="button" class="btn btn-gold cookie-btn" id="cookieAccept">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=20260415_cookie_01"></script>
 </body>
 </html>
