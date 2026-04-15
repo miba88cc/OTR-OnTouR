@@ -23,12 +23,36 @@ function closePopup() {
   }
 }
 
+function setCookieConsent(value) {
+  localStorage.setItem("otr_cookie_consent", value);
+}
+
+function getCookieConsent() {
+  return localStorage.getItem("otr_cookie_consent");
+}
+
+function showCookieBanner() {
+  const banner = document.getElementById("cookieBanner");
+  if (!banner) return;
+  banner.classList.add("active");
+  banner.setAttribute("aria-hidden", "false");
+}
+
+function hideCookieBanner() {
+  const banner = document.getElementById("cookieBanner");
+  if (!banner) return;
+  banner.classList.remove("active");
+  banner.setAttribute("aria-hidden", "true");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const heroVideo = document.getElementById("heroVideo");
   const form = document.getElementById("form");
   const submitBtn = document.getElementById("submitBtn");
   const formStatus = document.getElementById("formStatus");
   const popup = document.getElementById("successPopup");
+  const cookieAccept = document.getElementById("cookieAccept");
+  const cookieDecline = document.getElementById("cookieDecline");
 
   if (heroVideo) {
     heroVideo.muted = true;
@@ -112,6 +136,33 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const consent = getCookieConsent();
+
+  if (consent === "accepted") {
+    loadGoogleAnalytics();
+  } else if (!consent) {
+    showCookieBanner();
+  }
+
+  if (cookieAccept) {
+    cookieAccept.addEventListener("click", () => {
+      setCookieConsent("accepted");
+      loadGoogleAnalytics();
+      hideCookieBanner();
+
+      if (typeof gtag !== "undefined") {
+        gtag("event", "cookie_consent_accepted");
+      }
+    });
+  }
+
+  if (cookieDecline) {
+    cookieDecline.addEventListener("click", () => {
+      setCookieConsent("declined");
+      hideCookieBanner();
+    });
+  }
+
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -151,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
             popup.setAttribute("aria-hidden", "false");
           }
 
-          if (typeof gtag !== "undefined") {
+          if (getCookieConsent() === "accepted" && typeof gtag !== "undefined" && window.__gaLoaded) {
             gtag("event", "lead_submitted", {
               event_category: "Form",
               event_label: object.angebot || "unknown"
