@@ -115,16 +115,15 @@ document.addEventListener("DOMContentLoaded", () => {
     heroVideo.muted = true;
     heroVideo.defaultMuted = true;
     heroVideo.playsInline = true;
+    heroVideo.autoplay = true;
+    heroVideo.loop = true;
+    heroVideo.preload = "auto";
 
-    if (canAutoplayMedia) {
-      heroVideo.addEventListener("loadeddata", () => safelyPlay(heroVideo), { once: true });
-      heroVideo.addEventListener("canplay", () => safelyPlay(heroVideo), { once: true });
-      window.addEventListener("pageshow", () => safelyPlay(heroVideo));
-      safelyPlay(heroVideo);
-    } else {
-      heroVideo.pause();
-      heroVideo.removeAttribute("autoplay");
-    }
+    heroVideo.addEventListener("loadeddata", () => safelyPlay(heroVideo), { once: true });
+    heroVideo.addEventListener("canplay", () => safelyPlay(heroVideo));
+    window.addEventListener("pageshow", () => safelyPlay(heroVideo));
+    document.addEventListener("pointerdown", () => safelyPlay(heroVideo), { once: true });
+    safelyPlay(heroVideo);
   }
 
   const portfolioVideos = Array.from(document.querySelectorAll(".portfolio-video, .swap-video"));
@@ -160,6 +159,13 @@ document.addEventListener("DOMContentLoaded", () => {
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
+    video.addEventListener("playing", () => {
+      const media = video.closest(".portfolio-media");
+      const card = video.closest(".portfolio-hover-swap");
+
+      if (media) media.classList.add("video-ready");
+      if (card) card.classList.add("video-ready");
+    });
 
     if (observer) {
       observer.observe(video);
@@ -185,10 +191,12 @@ document.addEventListener("DOMContentLoaded", () => {
     card.addEventListener("mouseleave", () => {
       hoverVideo.pause();
       hoverVideo.currentTime = 0;
+      card.classList.remove("video-ready");
     });
 
     card.addEventListener("focusout", () => {
       hoverVideo.pause();
+      card.classList.remove("video-ready");
     });
   });
 
@@ -199,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (heroVideo && canAutoplayMedia) {
+    if (heroVideo) {
       safelyPlay(heroVideo);
     }
 
