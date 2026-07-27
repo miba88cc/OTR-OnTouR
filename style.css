@@ -447,6 +447,19 @@ p{
   display:block;
 }
 
+.portfolio-media .video-poster{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  opacity:1;
+  pointer-events:none;
+  transition:opacity .22s ease;
+}
+
+.portfolio-media.video-ready .video-poster{
+  opacity:0;
+}
+
 .portfolio-hover-swap .swap-photo,
 .portfolio-hover-swap .swap-video{
   position:absolute;
@@ -460,7 +473,7 @@ p{
 
 .portfolio-hover-swap .swap-photo{
   opacity:1;
-  z-index:0;
+  z-index:2;
 }
 
 .portfolio-hover-swap .swap-video{
@@ -470,7 +483,7 @@ p{
 }
 
 @media (hover:hover) and (pointer:fine){
-  .portfolio-hover-swap:hover .swap-photo{
+  .portfolio-hover-swap.video-ready:hover .swap-photo{
     opacity:0;
   }
   .portfolio-hover-swap:hover .swap-video{
