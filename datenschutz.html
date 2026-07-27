@@ -3,16 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Datenschutz – OTR-OnTouR</title>
 
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLWQMN5WKY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NLWQMN5WKY');
-  </script>
+  <title>Datenschutz | OTR-OnTouR</title>
+  <meta name="description" content="Datenschutzerklärung von OTR-OnTouR by Milan Bachofner zur Website, Kontaktaufnahme, Web3Forms und Google Analytics." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <link rel="canonical" href="https://www.otr-ontour.com/datenschutz.html" />
 
   <link rel="icon" type="image/png" sizes="72x72" href="favicon.png">
   <link rel="shortcut icon" href="favicon.png">
@@ -125,8 +121,6 @@
       font-size:clamp(34px, 5vw, 56px);
       line-height:1.02;
       overflow-wrap:anywhere;
-      word-break:break-word;
-      hyphens:auto;
     }
 
     h2{
@@ -134,22 +128,25 @@
       font-size:clamp(22px, 3vw, 34px);
       line-height:1.08;
       overflow-wrap:anywhere;
-      word-break:break-word;
     }
 
-    p{
-      margin:0 0 14px 0;
+    p, li{
       font-size:17px;
       line-height:1.65;
       color:#d7d7d7;
       overflow-wrap:anywhere;
     }
 
+    p{ margin:0 0 14px 0; }
+    ul{ padding-left:22px; }
+
     .legal-meta{
-      color:#caa25a;
+      color:var(--gold);
       font-size:15px;
       margin-bottom:22px;
     }
+
+    .legal-link{ color:var(--gold); text-decoration:underline; text-underline-offset:3px; }
 
     .site-footer{
       padding:22px 20px 36px;
@@ -164,9 +161,7 @@
       color:#aab0b8;
     }
 
-    .footer-location{
-      color:#d6c5a0 !important;
-    }
+    .footer-location{ color:#d6c5a0 !important; }
 
     .footer-links{
       display:flex;
@@ -196,32 +191,17 @@
       }
 
       .nav-links a{ font-size:14px; }
-
-      .nav-cta{
-        padding:10px 16px;
-      }
-
-      .legal-wrap{
-        padding:20px 0 72px;
-      }
+      .nav-cta{ padding:10px 16px; }
+      .legal-wrap{ padding:20px 0 72px; }
 
       .legal-card{
         padding:28px 20px;
         border-radius:20px;
       }
 
-      h1{
-        font-size:clamp(28px, 8.8vw, 40px);
-        line-height:1.05;
-      }
-
-      h2{
-        font-size:clamp(20px, 6vw, 30px);
-      }
-
-      p{
-        font-size:16px;
-      }
+      h1{ font-size:clamp(28px, 8.8vw, 40px); }
+      h2{ font-size:clamp(20px, 6vw, 30px); }
+      p, li{ font-size:16px; }
     }
 
     @media (max-width: 480px){
@@ -232,32 +212,15 @@
       }
 
       .logo-img{ height:34px; }
-
       .nav-links{ gap:8px 12px; }
-
       .nav-links a{ font-size:13px; }
+      .nav-cta{ padding:9px 14px; }
+      .legal-wrap{ width:calc(100% - 24px); }
+      .legal-card{ padding:24px 16px; }
+      h1{ font-size:clamp(24px, 8vw, 34px); }
+      h2{ font-size:clamp(18px, 6.2vw, 26px); }
 
-      .nav-cta{
-        padding:9px 14px;
-      }
-
-      .legal-wrap{
-        width:calc(100% - 24px);
-      }
-
-      .legal-card{
-        padding:24px 16px;
-      }
-
-      h1{
-        font-size:clamp(24px, 8vw, 34px);
-      }
-
-      h2{
-        font-size:clamp(18px, 6.2vw, 26px);
-      }
-
-      p{
+      p, li{
         font-size:15px;
         line-height:1.7;
       }
@@ -266,9 +229,9 @@
 </head>
 <body>
   <div class="page-shell">
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Hauptnavigation">
       <a href="index.html#top" class="logo-wrap" aria-label="OTR-OnTouR Startseite">
-        <img src="Logo White_OTR-OnTouR.png" alt="OTR-OnTouR Logo" class="logo-img">
+        <img src="Logo White_OTR-OnTouR.png" alt="OTR-OnTouR Logo" class="logo-img" decoding="async">
       </a>
 
       <div class="nav-links">
@@ -283,9 +246,9 @@
       <section class="legal-card">
         <p class="eyebrow">Rechtliches</p>
         <h1>Datenschutzerklärung</h1>
-        <p class="legal-meta"><strong>Stand:</strong> 19.03.2026</p>
+        <p class="legal-meta"><strong>Stand:</strong> 27.07.2026</p>
 
-        <p>Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Datenschutzerklärung informiert über Art, Umfang und Zweck der Bearbeitung personenbezogener Daten auf dieser Website.</p>
+        <p>Diese Datenschutzerklärung informiert darüber, wie personenbezogene Daten bei der Nutzung dieser Website und bei einer Kontaktaufnahme bearbeitet werden. Sie ist als transparente Information gedacht und ersetzt keine individuelle Rechtsberatung.</p>
 
         <h2>1. Verantwortliche Stelle</h2>
         <p>
@@ -293,27 +256,38 @@
           Bernstrasse 68<br>
           3175 Flamatt<br>
           Schweiz<br>
-          E-Mail: <a href="mailto:info@otr-ontour.com" style="color:#caa25a;">info@otr-ontour.com</a>
+          E-Mail: <a class="legal-link" href="mailto:info@otr-ontour.com">info@otr-ontour.com</a>
         </p>
 
-        <h2>2. Erhebung technischer Daten</h2>
-        <p>Beim Besuch dieser Website können automatisch technische Daten wie IP-Adresse, Browsertyp, Betriebssystem, Datum und Uhrzeit des Zugriffs verarbeitet werden. Diese Daten dienen der Stabilität, Sicherheit und technischen Bereitstellung der Website.</p>
+        <h2>2. Technische Bereitstellung der Website</h2>
+        <p>Beim Aufruf der Website können technisch notwendige Verbindungsdaten bearbeitet werden. Dazu können insbesondere IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browsertyp, Betriebssystem und übertragene Datenmenge gehören. Die Bearbeitung dient der sicheren und stabilen Bereitstellung der Website sowie der Fehleranalyse.</p>
 
-        <h2>3. Kontaktaufnahme</h2>
-        <p>Wenn Sie per E-Mail oder über das Anfrageformular Kontakt aufnehmen, werden die von Ihnen übermittelten Angaben zur Bearbeitung Ihrer Anfrage verwendet.</p>
+        <h2>3. Kontaktaufnahme und Anfrageformular</h2>
+        <p>Wenn du per E-Mail oder über das Anfrageformular Kontakt aufnimmst, werden die von dir übermittelten Angaben zur Bearbeitung deiner Anfrage und für allfällige Anschlussfragen verwendet.</p>
+        <p>Das Anfrageformular wird technisch über Web3Forms bereitgestellt. Beim Absenden werden die eingegebenen Angaben an Web3Forms übermittelt und an OTR-OnTouR weitergeleitet. Nach Angaben des Anbieters werden Formulareingaben nicht dauerhaft als Formulareinträge gespeichert; technische Serverprotokolle können jedoch vorübergehend personenbezogene Angaben enthalten. Die Server von Web3Forms befinden sich nach Angaben des Anbieters in der Region US-East. Als Alternative kannst du direkt an <a class="legal-link" href="mailto:info@otr-ontour.com">info@otr-ontour.com</a> schreiben.</p>
 
         <h2>4. Google Analytics</h2>
-        <p>Diese Website verwendet Google Analytics, einen Webanalysedienst von Google. Google Analytics verwendet Cookies, die eine Analyse der Benutzung der Website ermöglichen.</p>
-        <p>Die durch Cookies erzeugten Informationen über Ihre Benutzung dieser Website können an Server von Google übertragen und dort gespeichert werden.</p>
+        <p>Diese Website verwendet Google Analytics nur, wenn du über den Cookie-Banner ausdrücklich zustimmst. Ohne Zustimmung wird das Analyse-Skript nicht geladen.</p>
+        <p>Bei einer Zustimmung können insbesondere Informationen über dein Gerät, deinen Browser, die besuchten Seiten, Interaktionen sowie technische Verbindungsdaten an Google übermittelt werden. Die Analyse dient dazu, die Nutzung der Website zu verstehen und Inhalte sowie Nutzerführung zu verbessern.</p>
+        <p>Du kannst deine Auswahl zurücksetzen, indem du die gespeicherten Website-Daten beziehungsweise den Local Storage für diese Domain in deinem Browser löschst. Danach wird der Cookie-Banner erneut angezeigt.</p>
 
-        <h2>5. Cookies</h2>
-        <p>Diese Website kann Cookies verwenden. Cookies dienen dazu, das Angebot nutzerfreundlicher, effektiver und sicherer zu machen.</p>
+        <h2>5. Lokale Speicherung der Einwilligung</h2>
+        <p>Die Entscheidung zum Analyse-Tracking wird im Local Storage deines Browsers unter dem Schlüssel <code>otr_cookie_consent</code> gespeichert. Dadurch muss die Auswahl nicht bei jedem Seitenaufruf erneut getroffen werden.</p>
 
-        <h2>6. Ihre Rechte</h2>
-        <p>Sie haben im Rahmen des anwendbaren Datenschutzrechts das Recht auf Auskunft, Berichtigung und Löschung Ihrer personenbezogenen Daten.</p>
+        <h2>6. Datenübermittlung ins Ausland</h2>
+        <p>Bei der Nutzung externer Dienste können Daten ausserhalb der Schweiz bearbeitet werden, insbesondere in den Vereinigten Staaten. Soweit erforderlich, stützt sich die Bearbeitung auf geeignete rechtliche Grundlagen und Schutzmassnahmen des jeweiligen Dienstanbieters.</p>
 
-        <h2>7. Änderungen</h2>
-        <p>Diese Datenschutzerklärung kann jederzeit angepasst werden. Es gilt die jeweils auf dieser Website veröffentlichte Version.</p>
+        <h2>7. Aufbewahrung</h2>
+        <p>Personenbezogene Daten werden nur so lange aufbewahrt, wie dies zur Bearbeitung der Anfrage, zur Erfüllung vertraglicher oder gesetzlicher Pflichten oder zur Wahrung berechtigter Interessen erforderlich ist.</p>
+
+        <h2>8. Deine Rechte</h2>
+        <p>Im Rahmen des anwendbaren Datenschutzrechts kannst du insbesondere Auskunft, Berichtigung oder Löschung deiner personenbezogenen Daten verlangen. Je nach Situation können weitere Rechte bestehen. Anfragen können an <a class="legal-link" href="mailto:info@otr-ontour.com">info@otr-ontour.com</a> gerichtet werden.</p>
+
+        <h2>9. Datensicherheit</h2>
+        <p>Es werden angemessene technische und organisatorische Massnahmen eingesetzt, um personenbezogene Daten vor unberechtigtem Zugriff, Verlust, Missbrauch oder Veränderung zu schützen. Eine vollständig risikofreie Datenübertragung über das Internet kann jedoch nicht garantiert werden.</p>
+
+        <h2>10. Änderungen</h2>
+        <p>Diese Datenschutzerklärung kann angepasst werden, wenn sich die Website, eingesetzte Dienste oder rechtliche Anforderungen ändern. Es gilt die jeweils auf dieser Website veröffentlichte Version.</p>
       </section>
     </main>
   </div>
@@ -323,7 +297,7 @@
     <p class="footer-location">Flamatt, Fribourg, Schweiz</p>
     <div class="footer-links">
       <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
+      <a href="datenschutz.html" aria-current="page">Datenschutz</a>
     </div>
   </footer>
 </body>
