@@ -1,3 +1,25 @@
+const GA_MEASUREMENT_ID = "G-NLWQMN5WKY";
+
+window.dataLayer = window.dataLayer || [];
+window.gtag = window.gtag || function gtag() {
+  window.dataLayer.push(arguments);
+};
+
+function loadGoogleAnalytics() {
+  if (window.__gaLoaded) return;
+
+  window.__gaLoaded = true;
+  const analyticsScript = document.createElement("script");
+  analyticsScript.async = true;
+  analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(analyticsScript);
+
+  window.gtag("js", new Date());
+  window.gtag("config", GA_MEASUREMENT_ID, {
+    anonymize_ip: true
+  });
+}
+
 function selectOffer(offerName) {
   const offerInput = document.getElementById("offer");
   const formSection = document.getElementById("anfrage");
@@ -17,10 +39,10 @@ function selectOffer(offerName) {
 
 function closePopup() {
   const popup = document.getElementById("successPopup");
-  if (popup) {
-    popup.classList.remove("active");
-    popup.setAttribute("aria-hidden", "true");
-  }
+  if (!popup) return;
+
+  popup.classList.remove("active");
+  popup.setAttribute("aria-hidden", "true");
 }
 
 function setCookieConsent(value) {
@@ -34,6 +56,7 @@ function getCookieConsent() {
 function showCookieBanner() {
   const banner = document.getElementById("cookieBanner");
   if (!banner) return;
+
   banner.classList.add("active");
   banner.setAttribute("aria-hidden", "false");
 }
@@ -41,8 +64,38 @@ function showCookieBanner() {
 function hideCookieBanner() {
   const banner = document.getElementById("cookieBanner");
   if (!banner) return;
+
   banner.classList.remove("active");
   banner.setAttribute("aria-hidden", "true");
+}
+
+function safelyPlay(video) {
+  if (!video) return;
+
+  const playPromise = video.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {});
+  }
+}
+
+function loadDeferredVideo(video) {
+  if (!video || video.dataset.loaded === "true") return;
+
+  const sources = video.querySelectorAll("source[data-src]");
+  let hasSource = false;
+
+  sources.forEach((source) => {
+    if (!source.src) {
+      source.src = source.dataset.src;
+      hasSource = true;
+    }
+  });
+
+  if (hasSource) {
+    video.load();
+  }
+
+  video.dataset.loaded = "true";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -53,86 +106,107 @@ document.addEventListener("DOMContentLoaded", () => {
   const popup = document.getElementById("successPopup");
   const cookieAccept = document.getElementById("cookieAccept");
   const cookieDecline = document.getElementById("cookieDecline");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+  const canAutoplayMedia = !reducedMotion && !saveData;
+  const formReadyAt = Date.now();
 
   if (heroVideo) {
     heroVideo.muted = true;
     heroVideo.defaultMuted = true;
     heroVideo.playsInline = true;
-    heroVideo.autoplay = true;
-    heroVideo.loop = true;
 
-    heroVideo.setAttribute("muted", "");
-    heroVideo.setAttribute("playsinline", "");
-    heroVideo.setAttribute("webkit-playsinline", "");
-    heroVideo.setAttribute("autoplay", "");
-    heroVideo.setAttribute("loop", "");
-
-    const tryPlayHero = () => {
-      const promise = heroVideo.play();
-      if (promise !== undefined) {
-        promise.catch(() => {});
-      }
-    };
-
-    heroVideo.addEventListener("loadeddata", tryPlayHero);
-    heroVideo.addEventListener("canplay", tryPlayHero);
-    window.addEventListener("pageshow", tryPlayHero);
-
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) {
-        tryPlayHero();
-      }
-    });
-
-    tryPlayHero();
+    if (canAutoplayMedia) {
+      heroVideo.addEventListener("loadeddata", () => safelyPlay(heroVideo), { once: true });
+      heroVideo.addEventListener("canplay", () => safelyPlay(heroVideo), { once: true });
+      window.addEventListener("pageshow", () => safelyPlay(heroVideo));
+      safelyPlay(heroVideo);
+    } else {
+      heroVideo.pause();
+      heroVideo.removeAttribute("autoplay");
+    }
   }
 
-  const portfolioVideos = document.querySelectorAll(".portfolio-video, .swap-video");
+  const portfolioVideos = Array.from(document.querySelectorAll(".portfolio-video, .swap-video"));
+  const visibleVideos = new Set();
+
+  const observer = "IntersectionObserver" in window
+    ? new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+
+          if (entry.isIntersecting) {
+            visibleVideos.add(video);
+
+            if (!saveData) {
+              loadDeferredVideo(video);
+            }
+
+            if (canAutoplayMedia && video.classList.contains("portfolio-video")) {
+              safelyPlay(video);
+            }
+          } else {
+            visibleVideos.delete(video);
+            video.pause();
+          }
+        });
+      }, {
+        rootMargin: "250px 0px",
+        threshold: 0.15
+      })
+    : null;
 
   portfolioVideos.forEach((video) => {
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
-    video.autoplay = true;
-    video.loop = true;
 
-    video.setAttribute("muted", "");
-    video.setAttribute("playsinline", "");
-    video.setAttribute("webkit-playsinline", "");
-    video.setAttribute("autoplay", "");
-    video.setAttribute("loop", "");
-
-    const tryPlay = () => {
-      const promise = video.play();
-      if (promise !== undefined) {
-        promise.catch(() => {});
-      }
-    };
-
-    video.addEventListener("loadeddata", tryPlay);
-    video.addEventListener("canplay", tryPlay);
-    video.addEventListener("mouseenter", tryPlay);
-    video.addEventListener("touchstart", tryPlay, { passive: true });
-
-    tryPlay();
+    if (observer) {
+      observer.observe(video);
+    } else if (!saveData) {
+      loadDeferredVideo(video);
+    }
   });
 
-  const hoverCards = document.querySelectorAll(".portfolio-hover-swap");
-
-  hoverCards.forEach((card) => {
+  document.querySelectorAll(".portfolio-hover-swap").forEach((card) => {
     const hoverVideo = card.querySelector(".swap-video");
     if (!hoverVideo) return;
 
-    card.addEventListener("mouseenter", () => {
-      const promise = hoverVideo.play();
-      if (promise !== undefined) {
-        promise.catch(() => {});
-      }
-    });
+    const startHoverVideo = () => {
+      if (saveData || reducedMotion) return;
+      loadDeferredVideo(hoverVideo);
+      safelyPlay(hoverVideo);
+    };
+
+    card.addEventListener("mouseenter", startHoverVideo);
+    card.addEventListener("focusin", startHoverVideo);
+    card.addEventListener("touchstart", startHoverVideo, { passive: true });
 
     card.addEventListener("mouseleave", () => {
       hoverVideo.pause();
       hoverVideo.currentTime = 0;
+    });
+
+    card.addEventListener("focusout", () => {
+      hoverVideo.pause();
+    });
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (heroVideo) heroVideo.pause();
+      portfolioVideos.forEach((video) => video.pause());
+      return;
+    }
+
+    if (heroVideo && canAutoplayMedia) {
+      safelyPlay(heroVideo);
+    }
+
+    visibleVideos.forEach((video) => {
+      if (canAutoplayMedia && video.classList.contains("portfolio-video")) {
+        safelyPlay(video);
+      }
     });
   });
 
@@ -150,8 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
       loadGoogleAnalytics();
       hideCookieBanner();
 
-      if (typeof gtag !== "undefined") {
-        gtag("event", "cookie_consent_accepted");
+      if (window.__gaLoaded) {
+        window.gtag("event", "cookie_consent_accepted");
       }
     });
   }
@@ -164,8 +238,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const botcheck = form.querySelector('input[name="botcheck"]');
+      if (botcheck && botcheck.checked) {
+        return;
+      }
+
+      if (Date.now() - formReadyAt < 1800) {
+        if (formStatus) {
+          formStatus.textContent = "Bitte prüfe deine Angaben und versuche es erneut.";
+        }
+        return;
+      }
 
       if (submitBtn) {
         submitBtn.disabled = true;
@@ -177,8 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const formData = new FormData(form);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
+      const payload = Object.fromEntries(formData.entries());
 
       try {
         const response = await fetch("https://api.web3forms.com/submit", {
@@ -187,12 +277,17 @@ document.addEventListener("DOMContentLoaded", () => {
             "Content-Type": "application/json",
             "Accept": "application/json"
           },
-          body: json
+          body: JSON.stringify(payload)
         });
 
-        const data = await response.json();
+        let data = {};
+        try {
+          data = await response.json();
+        } catch {
+          data = {};
+        }
 
-        if (response.ok) {
+        if (response.ok && data.success !== false) {
           if (formStatus) {
             formStatus.textContent = "";
           }
@@ -202,23 +297,27 @@ document.addEventListener("DOMContentLoaded", () => {
             popup.setAttribute("aria-hidden", "false");
           }
 
-          if (getCookieConsent() === "accepted" && typeof gtag !== "undefined" && window.__gaLoaded) {
-            gtag("event", "lead_submitted", {
+          if (getCookieConsent() === "accepted" && window.__gaLoaded) {
+            window.gtag("event", "lead_submitted", {
               event_category: "Form",
-              event_label: object.angebot || "unknown"
+              event_label: payload.angebot || "unknown"
             });
           }
 
           form.reset();
+        } else if (response.status === 429) {
+          if (formStatus) {
+            formStatus.textContent = "Zu viele Anfragen in kurzer Zeit. Bitte später erneut versuchen oder direkt per E-Mail schreiben.";
+          }
         } else {
           if (formStatus) {
-            formStatus.textContent = "Fehler beim Senden. Bitte erneut versuchen.";
+            formStatus.textContent = "Fehler beim Senden. Bitte erneut versuchen oder direkt per E-Mail schreiben.";
           }
           console.error("Web3Forms error:", data);
         }
       } catch (error) {
         if (formStatus) {
-          formStatus.textContent = "Netzwerkfehler. Bitte erneut versuchen.";
+          formStatus.textContent = "Netzwerkfehler. Bitte erneut versuchen oder direkt per E-Mail schreiben.";
         }
         console.error("Submit error:", error);
       } finally {
@@ -231,8 +330,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (popup) {
-    popup.addEventListener("click", (e) => {
-      if (e.target === popup) {
+    popup.addEventListener("click", (event) => {
+      if (event.target === popup) {
+        closePopup();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && popup.classList.contains("active")) {
         closePopup();
       }
     });
