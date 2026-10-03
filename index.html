@@ -61,8 +61,15 @@
   </script>
   <style>
     .model-photo{background:#fff}
-    .model-photo>img{display:block;width:100%;height:auto}
-    .model-photo::before{display:none}
+    .model-photo>img{display:block;width:100%;height:auto;filter:brightness(.78);transition:filter .4s ease}
+    .model-photo::before{transition:opacity .4s ease}
+    @media(hover:hover) and (pointer:fine){
+      .model-photo:hover>img{filter:brightness(1)}
+      .model-photo:hover::before{opacity:0}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .model-photo>img,.model-photo::before{transition:none}
+    }
   </style>
 </head>
 <body id="top">
