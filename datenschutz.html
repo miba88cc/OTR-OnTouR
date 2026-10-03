@@ -14,6 +14,8 @@
   <link rel="shortcut icon" href="favicon.png">
   <link rel="apple-touch-icon" sizes="72x72" href="favicon.png">
 
+  <link rel="stylesheet" href="style.css?v=20260728_01">
+
   <style>
     :root{
       --bg:#0b0c0e;
@@ -45,33 +47,14 @@
         linear-gradient(180deg, #0b0c0e 0%, #0e1014 100%);
     }
 
-    .navbar{
-      position:relative;
-      z-index:3;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:20px;
-      padding:28px 42px;
-      width:min(var(--max), calc(100% - 40px));
-      margin:0 auto;
-    }
-
-    .logo-wrap{
+.logo-wrap{
       flex:0 0 auto;
       display:flex;
       align-items:center;
       justify-content:center;
     }
 
-    .logo-img{
-      display:block;
-      height:46px;
-      width:auto;
-      object-fit:contain;
-    }
-
-    .nav-links{
+.nav-links{
       display:flex;
       align-items:center;
       justify-content:flex-end;
@@ -80,14 +63,7 @@
       min-width:0;
     }
 
-    .nav-links a{
-      color:#f0f0f0;
-      font-size:15px;
-      line-height:1.1;
-      white-space:nowrap;
-    }
-
-    .nav-cta{
+.nav-cta{
       padding:12px 18px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,0.18);
@@ -177,22 +153,10 @@
     }
 
     @media (max-width: 860px){
-      .navbar{
-        padding:20px 22px;
-        flex-direction:column;
-        gap:12px;
-      }
+  .logo-img{ height:38px; }
 
-      .logo-img{ height:38px; }
-
-      .nav-links{
-        justify-content:center;
-        gap:10px 14px;
-      }
-
-      .nav-links a{ font-size:14px; }
-      .nav-cta{ padding:10px 16px; }
-      .legal-wrap{ padding:20px 0 72px; }
+  .nav-links a{ font-size:14px; }
+  .legal-wrap{ padding:20px 0 72px; }
 
       .legal-card{
         padding:28px 20px;
@@ -205,17 +169,9 @@
     }
 
     @media (max-width: 480px){
-      .navbar{
-        width:calc(100% - 24px);
-        padding:18px 0;
-        gap:10px;
-      }
-
-      .logo-img{ height:34px; }
-      .nav-links{ gap:8px 12px; }
-      .nav-links a{ font-size:13px; }
-      .nav-cta{ padding:9px 14px; }
-      .legal-wrap{ width:calc(100% - 24px); }
+  .logo-img{ height:34px; }
+  .nav-links a{ font-size:13px; }
+  .legal-wrap{ width:calc(100% - 24px); }
       .legal-card{ padding:24px 16px; }
       h1{ font-size:clamp(24px, 8vw, 34px); }
       h2{ font-size:clamp(18px, 6.2vw, 26px); }
