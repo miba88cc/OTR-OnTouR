@@ -1010,3 +1010,13 @@ p{
     min-width:0;
   }
 }
+
+/* Keep the four primary links together on every page. */
+.navbar .nav-links{flex-wrap:nowrap}
+.navbar .nav-links a{white-space:nowrap}
+@media(max-width:700px){
+  .navbar{padding:20px 16px;flex-direction:column;gap:14px}
+  .navbar .nav-links{width:100%;justify-content:center;gap:clamp(8px,2.5vw,12px);flex-wrap:nowrap}
+  .navbar .nav-links a{font-size:clamp(13px,3.6vw,15px);flex:0 0 auto}
+  .navbar .nav-links .nav-cta{padding:10px 12px;width:auto}
+}
