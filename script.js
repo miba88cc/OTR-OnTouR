@@ -46,11 +46,158 @@ function closePopup() {
 }
 
 function setCookieConsent(value) {
-  localStorage.setItem("otr_cookie_consent", value);
+  try { localStorage.setItem("otr_cookie_consent", value); } catch (e) {}
 }
 
 function getCookieConsent() {
-  return localStorage.getItem("otr_cookie_consent");
+  try { return localStorage.getItem("otr_cookie_consent"); } catch (e) { return null; }
+}
+
+/* ---------- Theme (hell / dunkel) ---------- */
+const THEME_KEY = "otr_theme";
+
+function getStoredTheme() {
+  try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  const toggle = document.getElementById("themeToggle");
+  if (toggle) {
+    toggle.setAttribute("aria-label", theme === "dark" ? "Hellen Modus aktivieren" : "Dunklen Modus aktivieren");
+  }
+}
+
+function initTheme() {
+  const media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: light)") : null;
+  applyTheme(document.documentElement.getAttribute("data-theme") || "dark");
+
+  if (media && media.addEventListener) {
+    media.addEventListener("change", (event) => {
+      if (!getStoredTheme()) applyTheme(event.matches ? "light" : "dark");
+    });
+  }
+
+  const toggle = document.getElementById("themeToggle");
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      applyTheme(next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    });
+  }
+}
+
+/* ---------- Header, Menü, Back-to-top ---------- */
+function initHeader() {
+  const header = document.getElementById("siteHeader");
+  const hero = document.querySelector(".hero");
+  const backToTop = document.querySelector(".back-to-top");
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  const onScroll = () => {
+    const y = window.scrollY || window.pageYOffset;
+    if (header && hero) {
+      const limit = hero.offsetHeight - header.offsetHeight - 10;
+      header.classList.toggle("on-hero", y < limit);
+    }
+    if (backToTop) backToTop.classList.toggle("visible", y > 700);
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  onScroll();
+
+  if (header && menuToggle && navLinks) {
+    const setOpen = (open) => {
+      header.classList.toggle("menu-open", open);
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.setAttribute("aria-label", open ? "Menü schliessen" : "Menü öffnen");
+    };
+    menuToggle.addEventListener("click", () => setOpen(!header.classList.contains("menu-open")));
+    navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+    });
+    document.addEventListener("click", (event) => {
+      if (header.classList.contains("menu-open") && !header.contains(event.target)) setOpen(false);
+    });
+  }
+}
+
+/* ---------- Reveal-Animationen ---------- */
+function initReveal() {
+  const items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("in"));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+
+  items.forEach((el) => io.observe(el));
+}
+
+/* ---------- Kunden-Reels ---------- */
+function initReels(canAutoplayMedia, saveData) {
+  const reels = Array.from(document.querySelectorAll(".reel-video"));
+  if (!reels.length) return [];
+
+  reels.forEach((video) => {
+    video.muted = true;
+    video.playsInline = true;
+
+    const button = video.parentElement.querySelector(".reel-sound");
+    if (button) {
+      button.addEventListener("click", () => {
+        const enable = video.muted;
+        reels.forEach((other) => {
+          other.muted = true;
+          const b = other.parentElement.querySelector(".reel-sound");
+          if (b) { b.setAttribute("aria-pressed", "false"); b.setAttribute("aria-label", "Ton einschalten"); }
+        });
+        video.muted = !enable;
+        if (enable) {
+          loadDeferredVideo(video);
+          safelyPlay(video);
+        }
+        button.setAttribute("aria-pressed", String(enable));
+        button.setAttribute("aria-label", enable ? "Ton ausschalten" : "Ton einschalten");
+      });
+    }
+
+    video.addEventListener("click", () => {
+      loadDeferredVideo(video);
+      if (video.paused) safelyPlay(video); else video.pause();
+    });
+  });
+
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          if (!saveData) loadDeferredVideo(video);
+          if (canAutoplayMedia) safelyPlay(video);
+        } else {
+          video.pause();
+        }
+      });
+    }, { rootMargin: "200px 0px", threshold: 0.35 });
+    reels.forEach((v) => io.observe(v));
+  }
+
+  return reels;
 }
 
 function showCookieBanner() {
@@ -110,6 +257,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveData = Boolean(navigator.connection && navigator.connection.saveData);
   const canAutoplayMedia = !reducedMotion && !saveData;
   const formReadyAt = Date.now();
+
+  initTheme();
+  initHeader();
+  initReveal();
+  const reelVideos = initReels(canAutoplayMedia, saveData);
 
   if (heroVideo) {
     heroVideo.muted = true;
@@ -204,6 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.hidden) {
       if (heroVideo) heroVideo.pause();
       portfolioVideos.forEach((video) => video.pause());
+      reelVideos.forEach((video) => video.pause());
       return;
     }
 

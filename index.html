@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de-CH" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <title>OTR-OnTouR | Foto &amp; Video Produktion Schweiz</title>
   <meta name="description" content="OTR-OnTouR by Milan Bachofner – professionelle Foto- und Videoproduktion für Events, Business, Social Media, Restaurants, Brands und Artists in der Schweiz." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#0b0c0e" />
+  <meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)" />
   <link rel="canonical" href="https://www.otr-ontour.com/" />
 
   <meta property="og:type" content="website" />
@@ -15,21 +16,29 @@
   <meta property="og:title" content="OTR-OnTouR | Foto &amp; Video Produktion Schweiz" />
   <meta property="og:description" content="Professionelle Foto- und Videoproduktion mit Premium-Look für Unternehmen, Restaurants, Brands, Artists und Events." />
   <meta property="og:url" content="https://www.otr-ontour.com/" />
-  <meta property="og:image" content="https://www.otr-ontour.com/portrait_branding.webp" />
+  <meta property="og:image" content="https://www.otr-ontour.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="OTR-OnTouR Foto- und Videoproduktion" />
   <meta property="og:site_name" content="OTR-OnTouR" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="OTR-OnTouR | Foto &amp; Video Produktion Schweiz" />
   <meta name="twitter:description" content="Professionelle Foto- und Videoproduktion mit Premium-Look für Unternehmen, Restaurants, Brands, Artists und Events." />
-  <meta name="twitter:image" content="https://www.otr-ontour.com/portrait_branding.webp" />
+  <meta name="twitter:image" content="https://www.otr-ontour.com/og-image.jpg" />
 
-  <link rel="icon" type="image/png" sizes="72x72" href="favicon.png">
-  <link rel="shortcut icon" href="favicon.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="favicon.png">
-  <link rel="preload" as="image" href="portrait_branding.webp" fetchpriority="high">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
 
-  <link rel="stylesheet" href="style.css?v=20261004_1257" />
+  <script>
+    (function(){var d=document.documentElement,t=null;try{t=localStorage.getItem("otr_theme")}catch(e){}
+    d.setAttribute("data-theme",t||(window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"));d.classList.add("js")})();
+  </script>
+
+  <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="poster-landingpage.webp" fetchpriority="high">
+  <link rel="stylesheet" href="style.css?v=20261015_01" />
 
   <script type="application/ld+json">
   {
@@ -38,7 +47,7 @@
     "name": "OTR-OnTouR by Milan Bachofner",
     "url": "https://www.otr-ontour.com/",
     "logo": "https://www.otr-ontour.com/Logo%20White_OTR-OnTouR.png",
-    "image": "https://www.otr-ontour.com/portrait_branding.webp",
+    "image": "https://www.otr-ontour.com/og-image.jpg",
     "email": "info@otr-ontour.com",
     "description": "Professionelle Foto- und Videoproduktion für Events, Business, Social Media, Restaurants, Brands und Artists.",
     "address": {
@@ -49,61 +58,63 @@
       "addressRegion": "Fribourg",
       "addressCountry": "CH"
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Schweiz"
-    },
-    "priceRange": "CHF",
-    "sameAs": [
-      "https://www.instagram.com/otr_ontour"
+    "areaServed": { "@type": "Country", "name": "Schweiz" },
+    "priceRange": "CHF 590 – 1490 / Monat",
+    "sameAs": ["https://www.instagram.com/otr_ontour"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"In welchen Regionen arbeitest du?","acceptedAnswer":{"@type":"Answer","text":"Schwerpunkt Schweiz, je nach Projekt auch flexibel darüber hinaus."}},
+      {"@type":"Question","name":"Wie schnell ist die Lieferung?","acceptedAnswer":{"@type":"Answer","text":"Je nach Umfang, normalerweise schnell und klar abgestimmt. Bei priorisierten Projekten auch beschleunigt."}},
+      {"@type":"Question","name":"Gibt es auch individuelle Offerten?","acceptedAnswer":{"@type":"Answer","text":"Ja. Wenn keines der Modelle exakt passt, kannst du eine individuelle Anfrage senden."}},
+      {"@type":"Question","name":"Kann Foto und Video kombiniert werden?","acceptedAnswer":{"@type":"Answer","text":"Ja, genau dafür ist das Premium-Modell oder ein individuelles Einzelprojekt geeignet."}},
+      {"@type":"Question","name":"Wie läuft die Buchung ab?","acceptedAnswer":{"@type":"Answer","text":"Nach deiner Anfrage klären wir Bedarf, Umfang und Termin. Danach erfolgt die konkrete Planung."}}
     ]
   }
   </script>
-  <style>
-    .model-photo{background:#050608;border:0}
-    .model-photo>img{display:block;width:100%;height:auto;filter:brightness(.78);transition:filter .4s ease}
-    .model-photo::before{transition:opacity .4s ease}
-    @media(hover:hover) and (pointer:fine){
-      .model-photo:hover>img{filter:brightness(1)}
-      .model-photo:hover::before{opacity:0}
-    }
-    @media(prefers-reduced-motion:reduce){
-      .model-photo>img,.model-photo::before{transition:none}
-    }
-  </style>
 </head>
-<body id="top">
+<body id="top" class="has-hero">
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-  <header class="hero">
+  <!-- HEADER:START -->
+  <header class="site-header on-hero" id="siteHeader">
+    <div class="header-inner">
+      <a href="index.html#top" class="logo-wrap" aria-label="OTR-OnTouR Startseite">
+        <img src="Logo White_OTR-OnTouR.png" alt="OTR-OnTouR" class="logo-img logo-on-dark" width="567" height="652" decoding="async">
+        <img src="logo-dark.png" alt="" class="logo-img logo-on-light" width="567" height="648" decoding="async">
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Hauptnavigation">
+        <a href="index.html#abos">Abos</a>
+        <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#referenzen">Referenzen</a>
+        <a href="ueber-mich.html">Über mich</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Hell- oder Dunkelmodus umschalten" title="Hell / Dunkel">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z"/></svg>
+        </button>
+        <a href="index.html#anfrage" class="nav-cta">Anfrage</a>
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- HEADER:END -->
+
+  <section class="hero" aria-label="Einleitung">
     <div class="video-bg">
-      <video
-        id="heroVideo"
-        autoplay
-        muted
-        loop
-        playsinline
-        webkit-playsinline
-        preload="auto"
-        poster="poster-landingpage.webp"
-        aria-hidden="true">
-        <source src="landingpage.mp4?v=20260415_01" type="video/mp4">
+      <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="poster-landingpage.webp" aria-hidden="true">
+        <source src="media/hero-720.mp4" type="video/mp4" media="(max-width: 760px)">
+        <source src="media/hero-1080.mp4" type="video/mp4">
       </video>
     </div>
-
     <div class="overlay"></div>
-
-    <nav class="navbar" aria-label="Hauptnavigation">
-      <a href="#top" class="logo-wrap" aria-label="OTR-OnTouR Startseite">
-        <img src="Logo White_OTR-OnTouR.png" alt="OTR-OnTouR Logo" class="logo-img" decoding="async">
-      </a>
-
-      <div class="nav-links">
-        <a href="#abos">Abos</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="ueber-mich.html">Über mich</a>
-        <a href="#anfrage" class="nav-cta">Anfrage</a>
-      </div>
-    </nav>
 
     <div class="hero-content">
       <p class="eyebrow">Foto • Video • Social Media Content</p>
@@ -111,63 +122,52 @@
       <p class="hero-text">
         Professionelle Foto- und Videoproduktion mit Premium-Look – für Restaurants, Brands, Artists, Events und Unternehmen in der Schweiz.
       </p>
-
       <div class="hero-buttons">
         <a href="#abos" class="btn btn-gold">Modelle &amp; Preise ansehen</a>
         <a href="#anfrage" class="btn btn-outline" onclick="selectOffer('Individuelle Anfrage')">Unverbindlich anfragen</a>
       </div>
     </div>
-  </header>
+    <span class="scroll-cue" aria-hidden="true"></span>
+  </section>
 
-  <section class="availability-strip">
+  <section class="availability-strip" aria-label="Verfügbarkeit">
     <div class="container availability-inner">
-      <span class="availability-dot"></span>
+      <span class="availability-dot" aria-hidden="true"></span>
       <p>Aktuell neue Projekte &amp; Content-Abos möglich. Begrenzte Slots pro Monat.</p>
-      <a href="#anfrage" onclick="selectOffer('Individuelle Anfrage')">Slot anfragen</a>
+      <a href="#anfrage" onclick="selectOffer('Individuelle Anfrage')">Slot anfragen →</a>
     </div>
   </section>
 
   <section class="trust-bar" aria-label="Vorteile">
     <div class="trust-item">
-      <span class="trust-icon">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5.25 3.4 10.1 8 11 4.6-.9 8-5.75 8-11V5l-8-3Zm0 4.2 4 1.5v3.1c0 3.45-1.96 6.7-4 7.78-2.04-1.08-4-4.33-4-7.78V7.7l4-1.5Z"/></svg>
-      </span>
+      <span class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5.25 3.4 10.1 8 11 4.6-.9 8-5.75 8-11V5l-8-3Zm0 4.2 4 1.5v3.1c0 3.45-1.96 6.7-4 7.78-2.04-1.08-4-4.33-4-7.78V7.7l4-1.5Z"/></svg></span>
       <span>Professioneller Look</span>
     </div>
-
     <div class="trust-item">
-      <span class="trust-icon">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h4l2-2h4l2 2h4v12H4V6Zm8 2.2-2.2 3.8H12l-1 3.8 4.2-5.8H13l1-1.8H12Z"/></svg>
-      </span>
+      <span class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h4l2-2h4l2 2h4v12H4V6Zm8 2.2-2.2 3.8H12l-1 3.8 4.2-5.8H13l1-1.8H12Z"/></svg></span>
       <span>Cinematic Editing</span>
     </div>
-
     <div class="trust-item">
-      <span class="trust-icon">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm10 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM2 17c0-2.21 2.69-4 6-4s6 1.79 6 4v2H2v-2Zm8.8 2H22v-2c0-1.95-2.1-3.58-4.86-3.93 1.1.77 1.86 1.82 1.86 2.93v3Z"/></svg>
-      </span>
+      <span class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm10 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM2 17c0-2.21 2.69-4 6-4s6 1.79 6 4v2H2v-2Zm8.8 2H22v-2c0-1.95-2.1-3.58-4.86-3.93 1.1.77 1.86 1.82 1.86 2.93v3Z"/></svg></span>
       <span>Social Media Ready</span>
     </div>
-
     <div class="trust-item">
-      <span class="trust-icon">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3a9 9 0 1 0 8.95 10h-2.02A7 7 0 1 1 13 5V3Zm1 1v6h6A6 6 0 0 0 14 4Zm-3.3 5.3 2.6 2.6 4.4-4.4 1.4 1.4-5.8 5.8-4-4 1.4-1.4Z"/></svg>
-      </span>
+      <span class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3a9 9 0 1 0 8.95 10h-2.02A7 7 0 1 1 13 5V3Zm1 1v6h6A6 6 0 0 0 14 4Zm-3.3 5.3 2.6 2.6 4.4-4.4 1.4 1.4-5.8 5.8-4-4 1.4-1.4Z"/></svg></span>
       <span>Schnelle Lieferung</span>
     </div>
   </section>
 
-  <main>
+  <main id="main">
     <section id="abos" class="section">
       <div class="container">
-        <p class="section-tag">Abo-Modelle</p>
-        <h2>Monatliche Content-Modelle für einen starken Auftritt</h2>
-        <p class="section-intro">
+        <p class="section-tag reveal">Abo-Modelle</p>
+        <h2 class="reveal">Monatliche Content-Modelle für einen starken Auftritt</h2>
+        <p class="section-intro reveal">
           Regelmässiger Content schafft Vertrauen, Wiedererkennung und Sichtbarkeit. Wähle das Modell, das zu deinem Unternehmen und deinem Bedarf passt.
         </p>
 
         <div class="cards">
-          <div class="card">
+          <article class="card reveal">
             <p class="card-label">Starter</p>
             <h3>Für den starken Einstieg</h3>
             <p class="card-text">Ideal für kleinere Businesses, Selbständige und lokale Brands, die regelmässig sichtbar sein wollen.</p>
@@ -177,11 +177,12 @@
               <li>8 bearbeitete Fotos</li>
               <li>Social-Media-ready</li>
             </ul>
-            <div class="price">ab 590 CHF / Monat</div>
-            <button type="button" class="btn btn-gold full" onclick="selectOffer('Starter Abo')">Starter wählen</button>
-          </div>
+            <div class="price"><span>ab</span> <strong>590 CHF</strong><span>pro Monat</span></div>
+            <button type="button" class="btn btn-ghost full" onclick="selectOffer('Starter Abo')">Starter wählen</button>
+          </article>
 
-          <div class="card featured">
+          <article class="card featured reveal" style="--d:.08s">
+            <span class="card-badge">Beliebteste Wahl</span>
             <p class="card-label">Growth</p>
             <h3>Für konstante Sichtbarkeit</h3>
             <p class="card-text">Für Marken und Unternehmen, die professionell auftreten und regelmässig hochwertigen Content brauchen.</p>
@@ -191,11 +192,11 @@
               <li>20 bearbeitete Fotos</li>
               <li>Content für Social Media &amp; Website</li>
             </ul>
-            <div class="price">ab 990 CHF / Monat</div>
+            <div class="price"><span>ab</span> <strong>990 CHF</strong><span>pro Monat</span></div>
             <button type="button" class="btn btn-gold full" onclick="selectOffer('Growth Abo')">Growth wählen</button>
-          </div>
+          </article>
 
-          <div class="card">
+          <article class="card reveal" style="--d:.16s">
             <p class="card-label">Premium</p>
             <h3>Für maximale Wirkung</h3>
             <p class="card-text">Für Unternehmen, Artists und Brands mit höherem Anspruch an Präsenz, Qualität und Kontinuität.</p>
@@ -205,30 +206,31 @@
               <li>Priorisierte Bearbeitung</li>
               <li>Kreative Begleitung</li>
             </ul>
-            <div class="price">ab 1’490 CHF / Monat</div>
-            <button type="button" class="btn btn-gold full" onclick="selectOffer('Premium Abo')">Premium wählen</button>
-          </div>
+            <div class="price"><span>ab</span> <strong>1’490 CHF</strong><span>pro Monat</span></div>
+            <button type="button" class="btn btn-ghost full" onclick="selectOffer('Premium Abo')">Premium wählen</button>
+          </article>
         </div>
+        <p class="pricing-note reveal">Alle Preise in CHF. Nicht das Passende dabei? <a href="#anfrage" onclick="selectOffer('Individuelle Anfrage')" style="color:var(--accent);font-weight:600">Individuelle Offerte anfragen</a></p>
       </div>
     </section>
 
     <section class="section process-section">
       <div class="container">
-        <p class="section-tag">Ablauf</p>
-        <h2>So läuft die Zusammenarbeit ab</h2>
+        <p class="section-tag reveal">Ablauf</p>
+        <h2 class="reveal">So läuft die Zusammenarbeit ab</h2>
         <div class="process-grid">
-          <div class="process-card">
-            <div class="process-number">1</div>
+          <div class="process-card reveal">
+            <div class="process-number">01</div>
             <h3>Anfrage senden</h3>
             <p>Du schickst mir dein Projekt, dein Ziel und das gewünschte Angebot oder eine freie Anfrage.</p>
           </div>
-          <div class="process-card">
-            <div class="process-number">2</div>
+          <div class="process-card reveal" style="--d:.08s">
+            <div class="process-number">02</div>
             <h3>Briefing &amp; Planung</h3>
             <p>Wir klären Format, Stil, Ort, Timing und was du konkret brauchst – schnell und klar.</p>
           </div>
-          <div class="process-card">
-            <div class="process-number">3</div>
+          <div class="process-card reveal" style="--d:.16s">
+            <div class="process-number">03</div>
             <h3>Produktion &amp; Lieferung</h3>
             <p>Ich produziere den Content professionell und liefere dir die finalen Inhalte einsatzbereit aus.</p>
           </div>
@@ -238,76 +240,139 @@
 
     <section id="portfolio" class="section portfolio">
       <div class="container">
-        <p class="section-tag">Portfolio</p>
-        <h2>Beispiele für deinen möglichen Look</h2>
-        <p class="section-intro">
+        <p class="section-tag reveal">Portfolio</p>
+        <h2 class="reveal">Beispiele für deinen möglichen Look</h2>
+        <p class="section-intro reveal">
           Reels, Event-Content, Portraits und Branding-Aufnahmen für Social Media, Website und einen professionellen Gesamtauftritt.
         </p>
 
         <div class="portfolio-grid">
-          <div class="portfolio-item portfolio-landscape">
+          <div class="portfolio-item portfolio-landscape reveal">
             <div class="portfolio-media">
               <video class="portfolio-video" muted loop playsinline webkit-playsinline preload="none" poster="poster-business.webp" aria-label="Business Content Produkte">
                 <source data-src="video_business.mp4" type="video/mp4">
               </video>
               <img src="poster-business.webp" alt="" class="video-poster" loading="lazy" decoding="async">
             </div>
-            <div class="portfolio-overlay">Business Content – Produkte</div>
+            <div class="portfolio-overlay"><small>Business</small>Content – Produkte</div>
           </div>
 
-          <div class="portfolio-item portfolio-landscape">
+          <div class="portfolio-item portfolio-landscape reveal" style="--d:.08s">
             <div class="portfolio-media">
               <video class="portfolio-video" muted loop playsinline webkit-playsinline preload="none" poster="poster-business-02.webp" aria-label="Business Content Objekte">
                 <source data-src="video_business_02.mp4" type="video/mp4">
               </video>
               <img src="poster-business-02.webp" alt="" class="video-poster" loading="lazy" decoding="async">
             </div>
-            <div class="portfolio-overlay">Business Content – Objekte</div>
+            <div class="portfolio-overlay"><small>Business</small>Content – Objekte</div>
           </div>
 
-          <div class="portfolio-item portfolio-portrait portfolio-hover-swap">
+          <div class="portfolio-item portfolio-portrait portfolio-hover-swap reveal">
             <div class="portfolio-media">
-              <img src="event.webp" alt="Event Visuals" class="swap-photo" loading="lazy" decoding="async">
+              <img src="event.webp" alt="Event Visuals" class="swap-photo" loading="lazy" decoding="async" width="1200" height="1799">
               <video class="swap-video" muted loop playsinline webkit-playsinline preload="none" poster="event.webp" aria-label="Event Visuals Video">
                 <source data-src="video_event.mp4" type="video/mp4">
               </video>
             </div>
-            <div class="portfolio-overlay">Event Visuals</div>
+            <span class="hover-hint">▶ Video</span>
+            <div class="portfolio-overlay"><small>Event</small>Event Visuals</div>
           </div>
 
-          <div class="portfolio-item portfolio-portrait portfolio-hover-swap">
+          <div class="portfolio-item portfolio-portrait portfolio-hover-swap reveal" style="--d:.08s">
             <div class="portfolio-media">
-              <img src="portrait_branding.webp" alt="Portrait und Branding" class="swap-photo" loading="lazy" decoding="async">
+              <img src="portrait_branding.webp" alt="Portrait und Branding" class="swap-photo" loading="lazy" decoding="async" width="1200" height="1799">
               <video class="swap-video" muted loop playsinline webkit-playsinline preload="none" poster="portrait_branding.webp" aria-label="Portrait und Branding Video">
                 <source data-src="video_portrait_branding.mp4" type="video/mp4">
               </video>
             </div>
-            <div class="portfolio-overlay">Portrait &amp; Branding</div>
+            <span class="hover-hint">▶ Video</span>
+            <div class="portfolio-overlay"><small>Personal Brand</small>Portrait &amp; Branding</div>
           </div>
-          <div class="portfolio-item model-photo">
-            <img src="assets/model-shooting-mercedes.jpg" alt="Studioaufnahme mit Model und Mercedes" loading="lazy" decoding="async">
+
+          <div class="portfolio-item portfolio-portrait model-photo reveal">
+            <div class="portfolio-media">
+              <img src="assets/model-shooting-mercedes.webp" alt="Studioaufnahme mit Model und Mercedes" loading="lazy" decoding="async" width="1025" height="1536">
+            </div>
+            <div class="portfolio-overlay"><small>Studio</small>Automotive Shooting</div>
           </div>
-          <div class="portfolio-item model-photo">
-            <img src="assets/model-shooting-fashion.jpg" alt="Studioaufnahme mit Model im urbanen Fashion-Look" loading="lazy" decoding="async">
+
+          <div class="portfolio-item portfolio-portrait model-photo reveal" style="--d:.08s">
+            <div class="portfolio-media">
+              <img src="assets/model-shooting-fashion.webp" alt="Studioaufnahme mit Model im urbanen Fashion-Look" loading="lazy" decoding="async" width="1400" height="2099">
+            </div>
+            <div class="portfolio-overlay"><small>Studio</small>Fashion Shooting</div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="referenzen" class="section references">
+      <div class="container">
+        <div class="references-head">
+          <div>
+            <p class="section-tag reveal">Referenzen</p>
+            <h2 class="reveal">Für Kunden produziert</h2>
+          </div>
+          <p class="section-intro reveal">
+            Zwei aktuelle Reels aus echten Kundenprojekten – Konzept, Dreh und Schnitt aus einer Hand. Ton einschalten lohnt sich.
+          </p>
+        </div>
+
+        <div class="reel-grid">
+          <figure class="reel-card reveal">
+            <div class="reel-frame">
+              <video class="reel-video" muted loop playsinline webkit-playsinline preload="none" poster="media/reel-fitness.webp" aria-label="Kundenreel Fitness und Supplements">
+                <source data-src="media/reel-fitness.mp4" type="video/mp4">
+              </video>
+              <span class="reel-badge">Kundenprojekt</span>
+              <button type="button" class="reel-sound" aria-pressed="false" aria-label="Ton einschalten">
+                <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+                <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+                <span>Ton</span>
+              </button>
+            </div>
+            <figcaption><strong>Fitness &amp; Supplements</strong><span>Store-Reel für Social Media</span></figcaption>
+          </figure>
+
+          <figure class="reel-card reveal" style="--d:.1s">
+            <div class="reel-frame">
+              <video class="reel-video" muted loop playsinline webkit-playsinline preload="none" poster="media/reel-kajak.webp" aria-label="Kundenreel Kajak-Verleih">
+                <source data-src="media/reel-kajak.mp4" type="video/mp4">
+              </video>
+              <span class="reel-badge">Kundenprojekt</span>
+              <button type="button" class="reel-sound" aria-pressed="false" aria-label="Ton einschalten">
+                <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+                <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+                <span>Ton</span>
+              </button>
+            </div>
+            <figcaption><strong>Kajak-Verleih</strong><span>Brand-Reel &amp; Produkterklärung</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="references-cta reveal">
+          <button type="button" class="btn btn-gold" onclick="selectOffer('Einzelprojekt Videoprojekt')">So ein Reel für mein Business</button>
         </div>
       </div>
     </section>
 
     <section class="section social-proof-section">
       <div class="container">
-        <p class="section-tag">Vertrauen</p>
-        <h2>Content mit professionellem Anspruch</h2>
+        <p class="section-tag reveal">Vertrauen</p>
+        <h2 class="reveal">Content mit professionellem Anspruch</h2>
         <div class="proof-grid">
-          <div class="proof-card">
+          <div class="proof-card reveal">
+            <div class="proof-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
             <h3>Für verschiedene Formate einsetzbar</h3>
             <p>Ob Reels, Branding, Event-Visuals oder Business-Content – die Inhalte werden passend für Plattform und Ziel eingesetzt.</p>
           </div>
-          <div class="proof-card">
+          <div class="proof-card reveal" style="--d:.08s">
+            <div class="proof-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></div>
             <h3>Fokus auf Wirkung statt nur Optik</h3>
             <p>Die Produktion ist nicht nur schön, sondern darauf ausgelegt, Vertrauen aufzubauen und Aufmerksamkeit zu halten.</p>
           </div>
-          <div class="proof-card">
+          <div class="proof-card reveal" style="--d:.16s">
+            <div class="proof-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg></div>
             <h3>Sauberer Ablauf, klare Kommunikation</h3>
             <p>Von der Anfrage bis zur Lieferung ist der Prozess strukturiert, direkt und professionell.</p>
           </div>
@@ -317,116 +382,133 @@
 
     <section id="einzelprojekt" class="section single-project-section">
       <div class="container single-project-wrap">
-        <p class="section-tag">Einzelprojekt</p>
-        <h2>Lieber ein Einzelprojekt statt ein Abo?</h2>
-        <p class="section-intro">
+        <p class="section-tag reveal">Einzelprojekt</p>
+        <h2 class="reveal">Lieber ein Einzelprojekt statt ein Abo?</h2>
+        <p class="section-intro reveal">
           Auch Einzelanfragen sind möglich — ob Fotoshooting, Event-Video, Portraits oder kombinierte Produktionen. Ideal für einmalige Projekte, spezielle Kampagnen oder den ersten gemeinsamen Auftrag.
         </p>
-
-        <div class="single-project-points">
+        <div class="single-project-points reveal">
           <div class="single-project-point">Fotoshooting</div>
           <div class="single-project-point">Videoprojekt</div>
           <div class="single-project-point">Foto + Video</div>
         </div>
-
-        <div class="single-project-cta">
+        <div class="single-project-cta reveal">
           <button type="button" class="btn btn-gold" onclick="selectOffer('Einzelprojekt Foto + Video')">Einzelprojekt anfragen</button>
         </div>
       </div>
     </section>
 
-    <section class="section cta-band">
-      <div class="container cta-band-inner">
-        <div>
-          <p class="section-tag">Bereit für den nächsten Schritt?</p>
-          <h2>Wenn der Look stimmen soll, muss auch die Umsetzung stimmen.</h2>
-          <p class="cta-band-text">Sichere dir jetzt einen freien Slot und lass uns dein Projekt sauber aufsetzen.</p>
-        </div>
-        <div class="cta-band-actions">
-          <button type="button" class="btn btn-gold" onclick="selectOffer('Individuelle Anfrage')">Jetzt Anfrage starten</button>
+    <section class="cta-band">
+      <div class="container">
+        <div class="cta-band-inner reveal">
+          <div>
+            <p class="section-tag">Bereit für den nächsten Schritt?</p>
+            <h2>Wenn der Look stimmen soll, muss auch die Umsetzung stimmen.</h2>
+            <p class="cta-band-text">Sichere dir jetzt einen freien Slot und lass uns dein Projekt sauber aufsetzen.</p>
+          </div>
+          <div class="cta-band-actions">
+            <button type="button" class="btn btn-gold" onclick="selectOffer('Individuelle Anfrage')">Jetzt Anfrage starten</button>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section faq-section">
-      <div class="container">
-        <p class="section-tag">FAQ</p>
-        <h2>Häufige Fragen</h2>
+      <div class="container narrow">
+        <p class="section-tag reveal">FAQ</p>
+        <h2 class="reveal">Häufige Fragen</h2>
         <div class="faq-list">
-          <div class="faq-item">
-            <h3>In welchen Regionen arbeitest du?</h3>
+          <details class="faq-item reveal">
+            <summary>In welchen Regionen arbeitest du?</summary>
             <p>Schwerpunkt Schweiz, je nach Projekt auch flexibel darüber hinaus.</p>
-          </div>
-          <div class="faq-item">
-            <h3>Wie schnell ist die Lieferung?</h3>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Wie schnell ist die Lieferung?</summary>
             <p>Je nach Umfang, normalerweise schnell und klar abgestimmt. Bei priorisierten Projekten auch beschleunigt.</p>
-          </div>
-          <div class="faq-item">
-            <h3>Gibt es auch individuelle Offerten?</h3>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Gibt es auch individuelle Offerten?</summary>
             <p>Ja. Wenn keines der Modelle exakt passt, kannst du eine individuelle Anfrage senden.</p>
-          </div>
-          <div class="faq-item">
-            <h3>Kann Foto und Video kombiniert werden?</h3>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Kann Foto und Video kombiniert werden?</summary>
             <p>Ja, genau dafür ist das Premium-Modell oder ein individuelles Einzelprojekt geeignet.</p>
-          </div>
-          <div class="faq-item">
-            <h3>Wie läuft die Buchung ab?</h3>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Wie läuft die Buchung ab?</summary>
             <p>Nach deiner Anfrage klären wir Bedarf, Umfang und Termin. Danach erfolgt die konkrete Planung.</p>
-          </div>
+          </details>
         </div>
       </div>
     </section>
 
     <section id="anfrage" class="section form-section">
       <div class="container narrow">
-        <p class="section-tag">Anfrage</p>
-        <h2>Projekt oder Angebot anfragen</h2>
-        <p class="form-intro">Wähle dein gewünschtes Modell oder Projekt und beschreibe kurz dein Vorhaben.</p>
-        <p class="form-trust">
-          Unverbindlich anfragen – ich melde mich mit einer passenden Empfehlung und einem klaren nächsten Schritt zurück.
-        </p>
+        <p class="section-tag reveal">Anfrage</p>
+        <h2 class="reveal">Projekt oder Angebot anfragen</h2>
+        <p class="form-intro reveal">Wähle dein gewünschtes Modell oder Projekt und beschreibe kurz dein Vorhaben.</p>
+        <p class="form-trust reveal">Unverbindlich anfragen – ich melde mich mit einer passenden Empfehlung und einem klaren nächsten Schritt zurück.</p>
 
-        <form class="contact-form" id="form" novalidate>
+        <form class="contact-form reveal" id="form" novalidate>
           <input type="hidden" name="access_key" value="d7fe71b8-99c3-49c6-9bdf-a5749c3eee05">
           <input type="hidden" name="subject" value="Neue Anfrage OTR-OnTouR">
           <input type="hidden" name="from_name" value="OTR-OnTouR Website">
-          <input type="checkbox" name="botcheck" class="hidden-botcheck" tabindex="-1" autocomplete="off">
+          <input type="checkbox" name="botcheck" class="hidden-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-          <input type="text" name="name" placeholder="Name" autocomplete="name" maxlength="100" required />
-          <input type="email" name="email" placeholder="E-Mail" autocomplete="email" maxlength="160" required />
-          <input type="tel" name="telefon" placeholder="Telefon / WhatsApp (optional)" autocomplete="tel" maxlength="40" />
-
-          <select id="offer" name="angebot" required>
-            <option value="" selected disabled>Gewähltes Angebot auswählen</option>
-            <option value="Starter Abo">Starter Abo</option>
-            <option value="Growth Abo">Growth Abo</option>
-            <option value="Premium Abo">Premium Abo</option>
-            <option value="Einzelprojekt Fotoshooting">Einzelprojekt Fotoshooting</option>
-            <option value="Einzelprojekt Videoprojekt">Einzelprojekt Videoprojekt</option>
-            <option value="Einzelprojekt Foto + Video">Einzelprojekt Foto + Video</option>
-            <option value="Individuelle Anfrage">Individuelle Anfrage</option>
-          </select>
-
-          <textarea name="message" rows="6" maxlength="3000" placeholder="Beschreibe kurz dein Projekt, Ort, Datum und was du brauchst." required></textarea>
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" type="text" name="name" placeholder="Vor- und Nachname" autocomplete="name" maxlength="100" required />
+          </div>
+          <div class="field">
+            <label for="f-email">E-Mail</label>
+            <input id="f-email" type="email" name="email" placeholder="name@firma.ch" autocomplete="email" maxlength="160" required />
+          </div>
+          <div class="field">
+            <label for="f-tel">Telefon / WhatsApp <span class="optional">(optional)</span></label>
+            <input id="f-tel" type="tel" name="telefon" placeholder="+41 …" autocomplete="tel" maxlength="40" />
+          </div>
+          <div class="field">
+            <label for="offer">Angebot</label>
+            <select id="offer" name="angebot" required>
+              <option value="" selected disabled>Bitte auswählen</option>
+              <option value="Starter Abo">Starter Abo</option>
+              <option value="Growth Abo">Growth Abo</option>
+              <option value="Premium Abo">Premium Abo</option>
+              <option value="Einzelprojekt Fotoshooting">Einzelprojekt Fotoshooting</option>
+              <option value="Einzelprojekt Videoprojekt">Einzelprojekt Videoprojekt</option>
+              <option value="Einzelprojekt Foto + Video">Einzelprojekt Foto + Video</option>
+              <option value="Individuelle Anfrage">Individuelle Anfrage</option>
+            </select>
+          </div>
+          <div class="field field-full">
+            <label for="f-msg">Dein Projekt</label>
+            <textarea id="f-msg" name="message" rows="6" maxlength="3000" placeholder="Was planst du? Ort, Datum und was du brauchst." required></textarea>
+          </div>
 
           <button type="submit" id="submitBtn" class="btn btn-gold full">Anfrage senden</button>
           <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
         </form>
 
-        <div class="direct-links icon-only-links">
-          <a class="icon-only-button" href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR" aria-label="Per E-Mail anfragen">
-            <img src="icon-mail.png" alt="" class="button-icon-large" loading="lazy" decoding="async">
+        <div class="direct-links reveal">
+          <a class="direct-link" href="mailto:info@otr-ontour.com?subject=Anfrage%20OTR-OnTouR">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>
+            info@otr-ontour.com
           </a>
-
-          <a class="icon-only-button" href="https://www.instagram.com/otr_ontour" target="_blank" rel="noopener noreferrer" aria-label="Instagram öffnen">
-            <img src="icon-instagram.png" alt="" class="button-icon-large" loading="lazy" decoding="async">
+          <a class="direct-link" href="https://www.instagram.com/otr_ontour" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg>
+            @otr_ontour
           </a>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER:START -->
   <footer class="site-footer">
+    <a href="index.html#top" class="footer-logo" aria-label="OTR-OnTouR Startseite">
+      <img src="Logo White_OTR-OnTouR.png" alt="OTR-OnTouR" class="logo-on-dark" width="567" height="652" loading="lazy">
+      <img src="logo-dark.png" alt="" class="logo-on-light" width="567" height="648" loading="lazy">
+    </a>
     <p>© 2026 OTR-OnTouR by Milan Bachofner</p>
     <p class="footer-location">Flamatt, Fribourg, Schweiz</p>
     <div class="footer-links">
@@ -435,6 +517,7 @@
       <a href="datenschutz.html">Datenschutz</a>
     </div>
   </footer>
+  <!-- FOOTER:END -->
 
   <a href="#top" class="back-to-top" aria-label="Nach oben scrollen">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l7 7-1.4 1.4L13 8.8V20h-2V8.8l-4.6 4.6L5 12l7-7z"/></svg>
@@ -453,12 +536,8 @@
     <div class="cookie-banner-inner">
       <div class="cookie-banner-text">
         <h3>Cookie-Einstellungen</h3>
-        <p>
-          Diese Website verwendet Google Analytics nur nach deiner Zustimmung. Mehr dazu in der
-          <a href="datenschutz.html">Datenschutzerklärung</a>.
-        </p>
+        <p>Diese Website verwendet Google Analytics nur nach deiner Zustimmung. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
       </div>
-
       <div class="cookie-banner-actions">
         <button type="button" class="btn btn-outline cookie-btn" id="cookieDecline">Ablehnen</button>
         <button type="button" class="btn btn-gold cookie-btn" id="cookieAccept">Akzeptieren</button>
@@ -466,7 +545,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=20260728_01"></script>
+  <script src="script.js?v=20261015_01"></script>
 </body>
 </html>
-

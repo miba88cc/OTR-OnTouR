@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de-CH" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,198 +7,54 @@
   <title>Datenschutz | OTR-OnTouR</title>
   <meta name="description" content="Datenschutzerklärung von OTR-OnTouR by Milan Bachofner zur Website, Kontaktaufnahme, Web3Forms und Google Analytics." />
   <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#0b0c0e" />
   <link rel="canonical" href="https://www.otr-ontour.com/datenschutz.html" />
 
   <link rel="icon" type="image/png" sizes="72x72" href="favicon.png">
   <link rel="shortcut icon" href="favicon.png">
   <link rel="apple-touch-icon" sizes="72x72" href="favicon.png">
+  <meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)">
+  <script>
+    (function(){var d=document.documentElement,t=null;try{t=localStorage.getItem("otr_theme")}catch(e){}
+    d.setAttribute("data-theme",t||(window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"));d.classList.add("js")})();
+  </script>
+  <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="style.css?v=20261004_1257">
-
-  <style>
-    :root{
-      --bg:#0b0c0e;
-      --text:#f5f5f5;
-      --muted:#c9cdd3;
-      --gold:#caa25a;
-      --line:rgba(255,255,255,0.08);
-      --max:1180px;
-    }
-
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
-      -webkit-font-smoothing:antialiased;
-      overflow-x:hidden;
-    }
-
-    a{ color:inherit; text-decoration:none; }
-
-    .page-shell{
-      min-height:100vh;
-      background:
-        radial-gradient(900px 450px at 50% -10%, rgba(202,162,90,0.08), transparent 60%),
-        linear-gradient(180deg, #0b0c0e 0%, #0e1014 100%);
-    }
-
-.logo-wrap{
-      flex:0 0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-.nav-links{
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      gap:22px;
-      flex-wrap:wrap;
-      min-width:0;
-    }
-
-.nav-cta{
-      padding:12px 18px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.18);
-      background:rgba(255,255,255,0.06);
-    }
-
-    .legal-wrap{
-      width:min(920px, calc(100% - 40px));
-      margin:0 auto;
-      padding:30px 0 90px;
-    }
-
-    .legal-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:40px 34px;
-      overflow:hidden;
-    }
-
-    .eyebrow{
-      color:var(--gold);
-      text-transform:uppercase;
-      letter-spacing:0.16em;
-      font-size:12px;
-      margin:0 0 12px 0;
-    }
-
-    h1{
-      margin:0 0 10px 0;
-      font-size:clamp(34px, 5vw, 56px);
-      line-height:1.02;
-      overflow-wrap:anywhere;
-    }
-
-    h2{
-      margin:30px 0 10px 0;
-      font-size:clamp(22px, 3vw, 34px);
-      line-height:1.08;
-      overflow-wrap:anywhere;
-    }
-
-    p, li{
-      font-size:17px;
-      line-height:1.65;
-      color:#d7d7d7;
-      overflow-wrap:anywhere;
-    }
-
-    p{ margin:0 0 14px 0; }
-    ul{ padding-left:22px; }
-
-    .legal-meta{
-      color:var(--gold);
-      font-size:15px;
-      margin-bottom:22px;
-    }
-
-    .legal-link{ color:var(--gold); text-decoration:underline; text-underline-offset:3px; }
-
-    .site-footer{
-      padding:22px 20px 36px;
-      text-align:center;
-      border-top:1px solid rgba(255,255,255,0.06);
-      background:#0a0b0d;
-    }
-
-    .site-footer p{
-      margin:0 0 8px 0;
-      font-size:14px;
-      color:#aab0b8;
-    }
-
-    .footer-location{ color:#d6c5a0 !important; }
-
-    .footer-links{
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-      margin-top:6px;
-    }
-
-    .footer-links a{
-      color:var(--gold);
-      font-size:14px;
-    }
-
-    @media (max-width: 860px){
-  .logo-img{ height:38px; }
-
-  .nav-links a{ font-size:14px; }
-  .legal-wrap{ padding:20px 0 72px; }
-
-      .legal-card{
-        padding:28px 20px;
-        border-radius:20px;
-      }
-
-      h1{ font-size:clamp(28px, 8.8vw, 40px); }
-      h2{ font-size:clamp(20px, 6vw, 30px); }
-      p, li{ font-size:16px; }
-    }
-
-    @media (max-width: 480px){
-  .logo-img{ height:34px; }
-  .nav-links a{ font-size:13px; }
-  .legal-wrap{ width:calc(100% - 24px); }
-      .legal-card{ padding:24px 16px; }
-      h1{ font-size:clamp(24px, 8vw, 34px); }
-      h2{ font-size:clamp(18px, 6.2vw, 26px); }
-
-      p, li{
-        font-size:15px;
-        line-height:1.7;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css?v=20261015_01">
 </head>
 <body>
-  <div class="page-shell">
-    <nav class="navbar" aria-label="Hauptnavigation">
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <!-- HEADER:START -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
       <a href="index.html#top" class="logo-wrap" aria-label="OTR-OnTouR Startseite">
-        <img src="Logo White_OTR-OnTouR.png" alt="OTR-OnTouR Logo" class="logo-img" decoding="async">
+        <img src="Logo White_OTR-OnTouR.png" alt="OTR-OnTouR" class="logo-img logo-on-dark" width="567" height="652" decoding="async">
+        <img src="logo-dark.png" alt="" class="logo-img logo-on-light" width="567" height="648" decoding="async">
       </a>
-
-      <div class="nav-links">
+      <nav class="nav-links" id="navLinks" aria-label="Hauptnavigation">
         <a href="index.html#abos">Abos</a>
         <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#referenzen">Referenzen</a>
         <a href="ueber-mich.html">Über mich</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Hell- oder Dunkelmodus umschalten" title="Hell / Dunkel">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z"/></svg>
+        </button>
         <a href="index.html#anfrage" class="nav-cta">Anfrage</a>
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
-    </nav>
+    </div>
+  </header>
+  <!-- HEADER:END -->
+  <div class="page-shell">
+    
 
-    <main class="legal-wrap">
+    <main id="main" class="legal-wrap">
       <section class="legal-card">
         <p class="eyebrow">Rechtliches</p>
         <h1>Datenschutzerklärung</h1>
@@ -248,15 +104,22 @@
     </main>
   </div>
 
+  <!-- FOOTER:START -->
   <footer class="site-footer">
+    <a href="index.html#top" class="footer-logo" aria-label="OTR-OnTouR Startseite">
+      <img src="Logo White_OTR-OnTouR.png" alt="OTR-OnTouR" class="logo-on-dark" width="567" height="652" loading="lazy">
+      <img src="logo-dark.png" alt="" class="logo-on-light" width="567" height="648" loading="lazy">
+    </a>
     <p>© 2026 OTR-OnTouR by Milan Bachofner</p>
     <p class="footer-location">Flamatt, Fribourg, Schweiz</p>
     <div class="footer-links">
       <a href="ueber-mich.html">Über mich</a>
       <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html" aria-current="page">Datenschutz</a>
+      <a href="datenschutz.html">Datenschutz</a>
     </div>
   </footer>
+  <!-- FOOTER:END -->
+  <script src="script.js?v=20261015_01"></script>
 </body>
 </html>
 
