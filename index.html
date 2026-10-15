@@ -37,8 +37,9 @@
 
   <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="poster-landingpage.webp" fetchpriority="high">
-  <link rel="stylesheet" href="style.css?v=20261015_01" />
+  <link rel="preload" as="image" href="img/hero-poster-720.webp" media="(max-width: 760px)" fetchpriority="high">
+  <link rel="preload" as="image" href="img/hero-poster-1080.webp" media="(min-width: 761px)" fetchpriority="high">
+  <link rel="stylesheet" href="style.css?v=20261015_02" />
 
   <script type="application/ld+json">
   {
@@ -109,8 +110,12 @@
 
   <section class="hero" aria-label="Einleitung">
     <div class="video-bg">
-      <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="poster-landingpage.webp" aria-hidden="true">
+      <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="img/hero-poster-1080.webp" aria-hidden="true">
+        <source src="media/hero-720.av1.mp4" type="video/mp4; codecs=&quot;av01.0.05M.08&quot;" media="(max-width: 760px)">
+        <source src="media/hero-720.hevc.mp4" type="video/mp4; codecs=&quot;hvc1.1.6.L93.B0&quot;" media="(max-width: 760px)">
         <source src="media/hero-720.mp4" type="video/mp4" media="(max-width: 760px)">
+        <source src="media/hero-1080.av1.mp4" type="video/mp4; codecs=&quot;av01.0.08M.08&quot;">
+        <source src="media/hero-1080.hevc.mp4" type="video/mp4; codecs=&quot;hvc1.1.6.L120.B0&quot;">
         <source src="media/hero-1080.mp4" type="video/mp4">
       </video>
     </div>
@@ -249,28 +254,34 @@
         <div class="portfolio-grid">
           <div class="portfolio-item portfolio-landscape reveal">
             <div class="portfolio-media">
-              <video class="portfolio-video" muted loop playsinline webkit-playsinline preload="none" poster="poster-business.webp" aria-label="Business Content Produkte">
+              <video class="portfolio-video" muted loop playsinline webkit-playsinline preload="none" aria-label="Business Content Produkte">
+                <source data-src="media/video_business.av1.mp4" type="video/mp4; codecs=&quot;av01.0.08M.08&quot;">
+                <source data-src="media/video_business.hevc.mp4" type="video/mp4; codecs=&quot;hvc1.1.6.L120.B0&quot;">
                 <source data-src="video_business.mp4" type="video/mp4">
               </video>
-              <img src="poster-business.webp" alt="" class="video-poster" loading="lazy" decoding="async">
+              <picture><source type="image/avif" srcset="img/business-640.avif 640w, img/business-1200.avif 1200w" sizes="(max-width: 700px) 100vw, 580px"><source type="image/webp" srcset="img/business-640.webp 640w, img/business-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 580px"><img src="img/business-1200.webp" class="video-poster" alt="" width="1200" height="675" loading="lazy" decoding="async"></picture>
             </div>
             <div class="portfolio-overlay"><small>Business</small>Content – Produkte</div>
           </div>
 
           <div class="portfolio-item portfolio-landscape reveal" style="--d:.08s">
             <div class="portfolio-media">
-              <video class="portfolio-video" muted loop playsinline webkit-playsinline preload="none" poster="poster-business-02.webp" aria-label="Business Content Objekte">
+              <video class="portfolio-video" muted loop playsinline webkit-playsinline preload="none" aria-label="Business Content Objekte">
+                <source data-src="media/video_business_02.av1.mp4" type="video/mp4; codecs=&quot;av01.0.05M.08&quot;">
+                <source data-src="media/video_business_02.hevc.mp4" type="video/mp4; codecs=&quot;hvc1.1.6.L93.B0&quot;">
                 <source data-src="video_business_02.mp4" type="video/mp4">
               </video>
-              <img src="poster-business-02.webp" alt="" class="video-poster" loading="lazy" decoding="async">
+              <picture><source type="image/avif" srcset="img/business-02-640.avif 640w, img/business-02-1080.avif 1080w" sizes="(max-width: 700px) 100vw, 580px"><source type="image/webp" srcset="img/business-02-640.webp 640w, img/business-02-1080.webp 1080w" sizes="(max-width: 700px) 100vw, 580px"><img src="img/business-02-1080.webp" class="video-poster" alt="" width="1080" height="1920" loading="lazy" decoding="async"></picture>
             </div>
             <div class="portfolio-overlay"><small>Business</small>Content – Objekte</div>
           </div>
 
           <div class="portfolio-item portfolio-portrait portfolio-hover-swap reveal">
             <div class="portfolio-media">
-              <img src="event.webp" alt="Event Visuals" class="swap-photo" loading="lazy" decoding="async" width="1200" height="1799">
-              <video class="swap-video" muted loop playsinline webkit-playsinline preload="none" poster="event.webp" aria-label="Event Visuals Video">
+              <picture><source type="image/avif" srcset="img/event-640.avif 640w, img/event-1200.avif 1200w" sizes="(max-width: 700px) 100vw, 580px"><source type="image/webp" srcset="img/event-640.webp 640w, img/event-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 580px"><img src="img/event-1200.webp" class="swap-photo" alt="Event Visuals" width="1200" height="1799" loading="lazy" decoding="async"></picture>
+              <video class="swap-video" muted loop playsinline webkit-playsinline preload="none" aria-label="Event Visuals Video">
+                <source data-src="media/video_event.av1.mp4" type="video/mp4; codecs=&quot;av01.0.05M.08&quot;">
+                <source data-src="media/video_event.hevc.mp4" type="video/mp4; codecs=&quot;hvc1.1.6.L93.B0&quot;">
                 <source data-src="video_event.mp4" type="video/mp4">
               </video>
             </div>
@@ -280,8 +291,10 @@
 
           <div class="portfolio-item portfolio-portrait portfolio-hover-swap reveal" style="--d:.08s">
             <div class="portfolio-media">
-              <img src="portrait_branding.webp" alt="Portrait und Branding" class="swap-photo" loading="lazy" decoding="async" width="1200" height="1799">
-              <video class="swap-video" muted loop playsinline webkit-playsinline preload="none" poster="portrait_branding.webp" aria-label="Portrait und Branding Video">
+              <picture><source type="image/avif" srcset="img/portrait-640.avif 640w, img/portrait-1200.avif 1200w" sizes="(max-width: 700px) 100vw, 580px"><source type="image/webp" srcset="img/portrait-640.webp 640w, img/portrait-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 580px"><img src="img/portrait-1200.webp" class="swap-photo" alt="Portrait und Branding" width="1200" height="1799" loading="lazy" decoding="async"></picture>
+              <video class="swap-video" muted loop playsinline webkit-playsinline preload="none" aria-label="Portrait und Branding Video">
+                <source data-src="media/video_portrait_branding.av1.mp4" type="video/mp4; codecs=&quot;av01.0.05M.08&quot;">
+                <source data-src="media/video_portrait_branding.hevc.mp4" type="video/mp4; codecs=&quot;hvc1.1.6.L93.B0&quot;">
                 <source data-src="video_portrait_branding.mp4" type="video/mp4">
               </video>
             </div>
@@ -291,14 +304,14 @@
 
           <div class="portfolio-item portfolio-portrait model-photo reveal">
             <div class="portfolio-media">
-              <img src="assets/model-shooting-mercedes.webp" alt="Studioaufnahme mit Model und Mercedes" loading="lazy" decoding="async" width="1025" height="1536">
+              <picture><source type="image/avif" srcset="img/mercedes-640.avif 640w, img/mercedes-1200.avif 1200w" sizes="(max-width: 700px) 100vw, 580px"><source type="image/webp" srcset="img/mercedes-640.webp 640w, img/mercedes-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 580px"><img src="img/mercedes-1200.webp" alt="Studioaufnahme mit Model und Mercedes" width="1025" height="1536" loading="lazy" decoding="async"></picture>
             </div>
             <div class="portfolio-overlay"><small>Studio</small>Automotive Shooting</div>
           </div>
 
           <div class="portfolio-item portfolio-portrait model-photo reveal" style="--d:.08s">
             <div class="portfolio-media">
-              <img src="assets/model-shooting-fashion.webp" alt="Studioaufnahme mit Model im urbanen Fashion-Look" loading="lazy" decoding="async" width="1400" height="2099">
+              <picture><source type="image/avif" srcset="img/fashion-640.avif 640w, img/fashion-1200.avif 1200w" sizes="(max-width: 700px) 100vw, 580px"><source type="image/webp" srcset="img/fashion-640.webp 640w, img/fashion-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 580px"><img src="img/fashion-1200.webp" alt="Studioaufnahme mit Model im urbanen Fashion-Look" width="1200" height="1799" loading="lazy" decoding="async"></picture>
             </div>
             <div class="portfolio-overlay"><small>Studio</small>Fashion Shooting</div>
           </div>
@@ -321,7 +334,9 @@
         <div class="reel-grid">
           <figure class="reel-card reveal">
             <div class="reel-frame">
-              <video class="reel-video" muted loop playsinline webkit-playsinline preload="none" poster="media/reel-fitness.webp" aria-label="Kundenreel Fitness und Supplements">
+              <video class="reel-video" muted loop playsinline webkit-playsinline preload="none" data-poster="img/reel-fitness-720.webp" aria-label="Kundenreel Fitness und Supplements">
+                <source data-src="media/reel-fitness.av1.mp4" type="video/mp4; codecs=&quot;av01.0.05M.08&quot;">
+                <source data-src="media/reel-fitness.hevc.mp4" type="video/mp4; codecs=&quot;hvc1.1.6.L93.B0&quot;">
                 <source data-src="media/reel-fitness.mp4" type="video/mp4">
               </video>
               <span class="reel-badge">Kundenprojekt</span>
@@ -336,7 +351,9 @@
 
           <figure class="reel-card reveal" style="--d:.1s">
             <div class="reel-frame">
-              <video class="reel-video" muted loop playsinline webkit-playsinline preload="none" poster="media/reel-kajak.webp" aria-label="Kundenreel Kajak-Verleih">
+              <video class="reel-video" muted loop playsinline webkit-playsinline preload="none" data-poster="img/reel-kajak-720.webp" aria-label="Kundenreel Kajak-Verleih">
+                <source data-src="media/reel-kajak.av1.mp4" type="video/mp4; codecs=&quot;av01.0.05M.08&quot;">
+                <source data-src="media/reel-kajak.hevc.mp4" type="video/mp4; codecs=&quot;hvc1.1.6.L93.B0&quot;">
                 <source data-src="media/reel-kajak.mp4" type="video/mp4">
               </video>
               <span class="reel-badge">Kundenprojekt</span>
@@ -545,6 +562,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=20261015_01"></script>
+  <script src="script.js?v=20261015_02"></script>
 </body>
 </html>

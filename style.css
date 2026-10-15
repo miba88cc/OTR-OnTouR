@@ -780,3 +780,4 @@ html:not(.js) .back-to-top{opacity:1;pointer-events:auto;transform:none}
   .availability-inner p{display:inline;vertical-align:middle}
   .availability-inner a{display:inline-block;margin-top:6px}
 }
+.portfolio-media picture,.about-photo picture{display:contents}

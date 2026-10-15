@@ -152,6 +152,10 @@ function initReveal() {
 function initReels(canAutoplayMedia, saveData) {
   const reels = Array.from(document.querySelectorAll(".reel-video"));
   if (!reels.length) return [];
+  const setPosterEarly = (video) => {
+    if (video.dataset.poster && !video.poster) video.poster = video.dataset.poster;
+  };
+  if (!("IntersectionObserver" in window)) reels.forEach(setPosterEarly);
 
   reels.forEach((video) => {
     video.muted = true;
@@ -177,16 +181,32 @@ function initReels(canAutoplayMedia, saveData) {
     }
 
     video.addEventListener("click", () => {
+      setPoster(video);
       loadDeferredVideo(video);
       if (video.paused) safelyPlay(video); else video.pause();
     });
   });
 
+  const setPoster = (video) => {
+    if (video.dataset.poster && !video.poster) video.poster = video.dataset.poster;
+  };
+
   if ("IntersectionObserver" in window) {
+    const posterIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setPoster(entry.target);
+          posterIo.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "900px 0px" });
+    reels.forEach((v) => posterIo.observe(v));
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const video = entry.target;
         if (entry.isIntersecting) {
+          setPoster(video);
           if (!saveData) loadDeferredVideo(video);
           if (canAutoplayMedia) safelyPlay(video);
         } else {
