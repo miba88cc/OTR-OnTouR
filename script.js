@@ -148,6 +148,73 @@ function initReveal() {
   items.forEach((el) => io.observe(el));
 }
 
+/* ---------- Business-Videos: erst auf Klick, mit Ton ---------- */
+function initSoundVideos() {
+  const videos = Array.from(document.querySelectorAll(".sound-video"));
+  if (!videos.length) return [];
+
+  videos.forEach((video) => {
+    const item = video.closest(".portfolio-item");
+    const media = video.closest(".portfolio-media");
+    const button = item ? item.querySelector(".play-sound") : null;
+    const label = button ? button.querySelector(".play-label") : null;
+
+    const setState = (playing) => {
+      if (!button) return;
+      button.setAttribute("aria-pressed", String(playing));
+      button.setAttribute("aria-label", playing ? "Video pausieren" : "Video mit Ton abspielen");
+      if (label) label.textContent = playing ? "Pause" : "Abspielen";
+    };
+
+    const start = () => {
+      document.dispatchEvent(new CustomEvent("otr:sound", { detail: video }));
+      loadDeferredVideo(video);
+      video.muted = false;
+      if (button) button.classList.add("is-loading");
+      const p = video.play();
+      if (p && p.catch) {
+        p.catch(() => {
+          // Falls der Browser Ton blockiert: stumm abspielen statt gar nicht
+          video.muted = true;
+          safelyPlay(video);
+        });
+      }
+    };
+
+    const toggle = () => {
+      if (video.paused) start(); else video.pause();
+    };
+
+    if (button) button.addEventListener("click", toggle);
+    video.addEventListener("click", toggle);
+
+    video.addEventListener("playing", () => {
+      if (media) media.classList.add("video-ready");
+      if (button) button.classList.remove("is-loading");
+      setState(true);
+    });
+    video.addEventListener("pause", () => {
+      if (button) button.classList.remove("is-loading");
+      setState(false);
+    });
+
+    document.addEventListener("otr:sound", (event) => {
+      if (event.detail !== video && !video.paused) video.pause();
+    });
+  });
+
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting && !entry.target.paused) entry.target.pause();
+      });
+    }, { threshold: 0.2 });
+    videos.forEach((v) => io.observe(v));
+  }
+
+  return videos;
+}
+
 /* ---------- Kunden-Reels ---------- */
 function initReels(canAutoplayMedia, saveData) {
   const reels = Array.from(document.querySelectorAll(".reel-video"));
@@ -172,6 +239,7 @@ function initReels(canAutoplayMedia, saveData) {
         });
         video.muted = !enable;
         if (enable) {
+          document.dispatchEvent(new CustomEvent("otr:sound", { detail: video }));
           loadDeferredVideo(video);
           safelyPlay(video);
         }
@@ -184,6 +252,15 @@ function initReels(canAutoplayMedia, saveData) {
       setPoster(video);
       loadDeferredVideo(video);
       if (video.paused) safelyPlay(video); else video.pause();
+    });
+  });
+
+  document.addEventListener("otr:sound", (event) => {
+    reels.forEach((other) => {
+      if (other === event.detail || other.muted) return;
+      other.muted = true;
+      const b = other.parentElement.querySelector(".reel-sound");
+      if (b) { b.setAttribute("aria-pressed", "false"); b.setAttribute("aria-label", "Ton einschalten"); }
     });
   });
 
@@ -282,6 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeader();
   initReveal();
   const reelVideos = initReels(canAutoplayMedia, saveData);
+  const soundVideos = initSoundVideos();
 
   if (heroVideo) {
     heroVideo.muted = true;
@@ -377,6 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (heroVideo) heroVideo.pause();
       portfolioVideos.forEach((video) => video.pause());
       reelVideos.forEach((video) => video.pause());
+      soundVideos.forEach((video) => video.pause());
       return;
     }
 

@@ -39,7 +39,7 @@
   <link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="img/hero-poster-720.webp" media="(max-width: 760px)" fetchpriority="high">
   <link rel="preload" as="image" href="img/hero-poster-1080.webp" media="(min-width: 761px)" fetchpriority="high">
-  <link rel="stylesheet" href="style.css?v=20261015_02" />
+  <link rel="stylesheet" href="style.css?v=20261015_03" />
 
   <script type="application/ld+json">
   {
@@ -254,7 +254,7 @@
         <div class="portfolio-grid">
           <div class="portfolio-item portfolio-landscape reveal">
             <div class="portfolio-media">
-              <video class="portfolio-video" muted loop playsinline webkit-playsinline preload="none" aria-label="Business Content Produkte">
+              <video class="sound-video" loop playsinline webkit-playsinline preload="none" aria-label="Business Content Produkte">
                 <source data-src="media/video_business.av1.mp4" type="video/mp4; codecs=&quot;av01.0.08M.08&quot;">
                 <source data-src="media/video_business.hevc.mp4" type="video/mp4; codecs=&quot;hvc1.1.6.L120.B0&quot;">
                 <source data-src="video_business.mp4" type="video/mp4">
@@ -262,11 +262,17 @@
               <picture><source type="image/avif" srcset="img/business-640.avif 640w, img/business-1200.avif 1200w" sizes="(max-width: 700px) 100vw, 580px"><source type="image/webp" srcset="img/business-640.webp 640w, img/business-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 580px"><img src="img/business-1200.webp" class="video-poster" alt="" width="1200" height="675" loading="lazy" decoding="async"></picture>
             </div>
             <div class="portfolio-overlay"><small>Business</small>Content – Produkte</div>
+            <button type="button" class="play-sound" aria-pressed="false" aria-label="Video mit Ton abspielen">
+              <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5L8 5.5Z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+              <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              <span class="play-label">Abspielen</span>
+            </button>
           </div>
 
           <div class="portfolio-item portfolio-landscape reveal" style="--d:.08s">
             <div class="portfolio-media">
-              <video class="portfolio-video" muted loop playsinline webkit-playsinline preload="none" aria-label="Business Content Objekte">
+              <video class="sound-video" loop playsinline webkit-playsinline preload="none" aria-label="Business Content Objekte">
                 <source data-src="media/video_business_02.av1.mp4" type="video/mp4; codecs=&quot;av01.0.05M.08&quot;">
                 <source data-src="media/video_business_02.hevc.mp4" type="video/mp4; codecs=&quot;hvc1.1.6.L93.B0&quot;">
                 <source data-src="video_business_02.mp4" type="video/mp4">
@@ -274,6 +280,12 @@
               <picture><source type="image/avif" srcset="img/business-02-640.avif 640w, img/business-02-1080.avif 1080w" sizes="(max-width: 700px) 100vw, 580px"><source type="image/webp" srcset="img/business-02-640.webp 640w, img/business-02-1080.webp 1080w" sizes="(max-width: 700px) 100vw, 580px"><img src="img/business-02-1080.webp" class="video-poster" alt="" width="1080" height="1920" loading="lazy" decoding="async"></picture>
             </div>
             <div class="portfolio-overlay"><small>Business</small>Content – Objekte</div>
+            <button type="button" class="play-sound" aria-pressed="false" aria-label="Video mit Ton abspielen">
+              <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5L8 5.5Z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+              <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              <span class="play-label">Abspielen</span>
+            </button>
           </div>
 
           <div class="portfolio-item portfolio-portrait portfolio-hover-swap reveal">
@@ -562,6 +574,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=20261015_02"></script>
+  <script src="script.js?v=20261015_03"></script>
 </body>
 </html>

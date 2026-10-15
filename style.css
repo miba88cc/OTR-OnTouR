@@ -781,3 +781,26 @@ html:not(.js) .back-to-top{opacity:1;pointer-events:auto;transform:none}
   .availability-inner a{display:inline-block;margin-top:6px}
 }
 .portfolio-media picture,.about-photo picture{display:contents}
+
+/* ---------- Business-Videos: Abspielen mit Ton ---------- */
+.play-sound{
+  position:absolute;right:16px;bottom:16px;z-index:4;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 16px 10px 13px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.28);
+  background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  color:#fff;font-size:13.5px;font-weight:600;cursor:pointer;
+  transition:background-color .2s ease,border-color .2s ease,transform .2s ease;
+}
+.play-sound:hover{background:rgba(0,0,0,.68);border-color:var(--gold);transform:translateY(-1px)}
+.play-sound svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.play-sound .icon-play{fill:currentColor;stroke:none}
+.play-sound .icon-pause{display:none}
+.play-sound[aria-pressed="true"] .icon-play{display:none}
+.play-sound[aria-pressed="true"] .icon-pause{display:block}
+.play-sound.is-loading{opacity:.75;cursor:progress}
+.portfolio-item .sound-video{cursor:pointer}
+@media (max-width:700px){
+  .play-sound{right:12px;bottom:12px;padding:9px 13px 9px 11px}
+  .play-sound .icon-sound{display:none}
+}
