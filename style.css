@@ -239,7 +239,14 @@ body.has-hero .site-header{position:fixed;left:0;right:0}
 }
 .site-header.on-hero .theme-toggle,
 .site-header.on-hero .menu-toggle{border-color:rgba(255,255,255,.28)}
-.theme-toggle:hover,.menu-toggle:hover{background:var(--surface-hover);border-color:var(--gold)}
+/* Hover nur auf Geraeten mit Maus: auf Touch bleibt :hover nach dem Tippen haengen
+   (im hellen Modus wurde der Kreis sonst weiss und das weisse Icon unsichtbar) */
+@media (hover:hover){
+  .theme-toggle:hover,.menu-toggle:hover{background:var(--surface-hover);border-color:var(--gold)}
+  .site-header.on-hero .theme-toggle:hover,
+  .site-header.on-hero .menu-toggle:hover{background:rgba(255,255,255,.14)}
+}
+.theme-toggle:focus-visible,.menu-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .theme-toggle svg,.menu-toggle svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .theme-toggle .icon-sun{display:none}
 :root[data-theme="dark"] .theme-toggle .icon-sun{display:block}
