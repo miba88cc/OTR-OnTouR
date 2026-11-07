@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /primebiome/
+Disallow: /test/
 
 Sitemap: https://www.otr-ontour.com/sitemap.xml

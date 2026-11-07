@@ -816,3 +816,38 @@ html:not(.js) .back-to-top{opacity:1;pointer-events:auto;transform:none}
 .hero h1{max-width:900px;font-size:clamp(46px,7.4vw,96px);line-height:.98;letter-spacing:-.035em}
 .hero h1 em{font-style:normal;color:var(--gold);display:inline-block}
 @media (max-width:700px){.hero h1{font-size:10.2vw;line-height:1.04}}
+
+/* =========================================================
+   GOLD-AKZENTE (Nov. 2026)
+   ========================================================= */
+:root{--ink:#111111}
+
+/* Hero: grössere Headline, leichter Gold-Schimmer */
+.hero h1{max-width:1200px;font-size:clamp(52px,9.4vw,140px);line-height:.94;letter-spacing:-.045em;font-weight:800}
+@media (max-width:700px){.hero h1{font-size:11vw;line-height:1}}
+.overlay{
+  background:
+    radial-gradient(820px 460px at 80% 10%,rgba(202,162,90,.14),transparent 62%),
+    linear-gradient(180deg,rgba(11,12,14,.5) 0%,rgba(11,12,14,.15) 35%,rgba(11,12,14,.9) 100%);
+}
+.hero .eyebrow{color:var(--gold);opacity:1}
+
+/* Gold-Streifen unter dem Hero */
+.trust-bar{
+  --text:var(--ink);--muted:rgba(17,17,17,.74);--accent:var(--ink);--line:rgba(17,17,17,.14);
+  background:var(--gold);color:var(--ink);border-color:transparent;
+}
+.trust-icon{color:var(--ink)}
+
+/* CTA-Band als volle Gold-Fläche */
+.cta-band-inner{background:var(--gold);border:0;color:var(--ink)}
+.cta-band .section-tag,.cta-band h2{color:var(--ink)}
+.cta-band-text{color:rgba(17,17,17,.78)}
+.cta-band .btn-gold{background:var(--ink);color:var(--gold)}
+.cta-band .btn-gold:hover{background:#000;box-shadow:0 12px 30px rgba(17,17,17,.25)}
+
+/* Kleine Gold-Akzente */
+.proof-icon{background:rgba(202,162,90,.14);color:var(--gold)}
+:root[data-theme="light"] .proof-icon{background:rgba(202,162,90,.18);color:var(--accent)}
+.card.featured{border-color:var(--gold);background:linear-gradient(180deg,rgba(202,162,90,.12),var(--surface) 55%)}
+.site-footer{border-top:3px solid var(--gold)}
